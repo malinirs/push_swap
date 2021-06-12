@@ -1,0 +1,35 @@
+The game is composed of 2 stacks named a and b.
+• To start with:
+◦ a contains a random number of either positive or negative numbers without any duplicates.
+◦ b is empty
+• The goal is to sort in ascending order numbers into stack a.
+• To do this you have the following operations at your disposal:
+sa : swap a - swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements).
+sb : swap b - swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements).
+ss : sa and sb at the same time.
+pa : push a - take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
+pb : push b - take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
+ra : rotate a - shift up all elements of stack a by 1. The first element becomes the last one.
+rb : rotate b - shift up all elements of stack b by 1. The first element becomes the last one.
+rr : ra and rb at the same time.
+rra : reverse rotate a - shift down all elements of stack a by 1. The last element becomes the first one.
+rrb : reverse rotate b - shift down all elements of stack b by 1. The last element becomes the first one.
+rrr : rra and rrb at the same time.
+
+Игра состоит из 2 стопок, названных a и b.
+• Начать с:
+◦ a содержит случайное число положительных или отрицательных чисел без дубликатов.
+◦ b пусто
+• Цель состоит в том, чтобы отсортировать числа в порядке возрастания в стопку a.
+• Для этого в вашем распоряжении следующие операции:
+sa: swap a - поменять местами первые 2 элемента на вершине стека a. Ничего не делать, если есть только один элемент или нет).
+sb: swap b - поменять местами первые 2 элемента наверху стека b. Ничего не делать, если есть только один элемент или нет).
+ss: sa и sb одновременно.
+pa: push a - возьмите первый элемент вверху b и поместите его вверху a. Ничего не делать, если b пусто.
+pb: push b - возьмите первый элемент вверху a и поместите его вверху b. Ничего не делать, если a пусто.
+ra: rotate a - сдвинуть вверх все элементы стека a на 1. Первый элемент становится последним.
+rb: rotate b - сдвинуть вверх все элементы стека b на 1. Первый элемент становится последним.
+rr: ra и rb одновременно.
+rra: reverse rotate a - сдвинуть вниз все элементы стека a на 1. Последний элемент становится первым.
+rrb: reverse rotate b - сдвинуть вниз все элементы стека b на 1. Последний элемент становится первым.
+rrr: rra и rrb одновременно.
