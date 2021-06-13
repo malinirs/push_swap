@@ -21,4 +21,5 @@ void	ra(t_list **list)
 void	sort_nbr(t_list **list)
 {
 	ra(list);
+	write(1, "ra\n", 3);
 }
