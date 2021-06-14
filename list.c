@@ -21,7 +21,7 @@ t_list	*ft_lstnew(int nbr)
 
 	new = malloc(sizeof(t_list));
 	if (!new)
-		clear_list(list); // ДОРАБОТАТЬ!!!
+		return (0x0);
 	new->nbr = nbr;
 	new->next = NULL;
 	return (new);

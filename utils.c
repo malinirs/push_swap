@@ -21,7 +21,7 @@
 void	close_program(void)
 {
 	write(1, "Error", 5);
-	exit(0);
+	exit(1);
 }
 
 int	ft_isdigit_mod(int c)
@@ -64,3 +64,4 @@ int	ft_strlen(char *str)
 		i++;
 	return (i);
 }
+
