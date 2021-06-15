@@ -65,3 +65,20 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
+int	ft_strchr_mod(const char *s, int c)
+{
+	int		i;
+	char	cc;
+
+	i = 0;
+	cc = (char)c;
+	while (s[i])
+	{
+		if (s[i] == cc)
+			return (1);
+		i++;
+	}
+	if (s[i] == cc)
+		return (1);
+	return (0);
+}

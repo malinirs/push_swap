@@ -21,10 +21,13 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstnew(int nbr);
 void	ra(t_list **list);
 void	sort_nbr(t_list **list);
-t_list 	write_list(char **argv, t_list **list);
+void 	write_list(char **argv, t_list **list);
 int		ft_strlen(char *str);
 void	clear_list(t_list **list);
 void	free_list(t_list **lst);
 int		ft_lstsize(t_list	*lst);
+int		ft_strchr_mod(const char *s, int c);
+char	**ft_split(char const *s, char c);
+
 
 #endif

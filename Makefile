@@ -3,7 +3,8 @@ NAME = push_swap.a
 SRCS =	push_swap.c \
 		utils.c \
 		list.c \
-		sort_nbr.c
+		sort_nbr.c \
+		ft_split.c
 
 #LIBFT = libft/libft.a
 
