@@ -45,21 +45,36 @@ void	ra(t_list **list)
 void	rra(t_list **list)
 {
 	t_list	*temp;
+	t_list	*tmp;
 	int		count;
+	int		i;
+
 
 	temp = *list;
 	count = 0;
-	while (*list != 0x0)
+	i = 0;
+	while (*list != NULL) /** || count < ft_lstsize(temp)) */
+	{
 		*list = (*list)->next_A;
-	(*list)->next_A = temp;
-	while (temp != NULL && count < ft_lstsize(temp) - 1)
+		count++;
+	}
+	*list = temp->next_A;
+	while (temp != NULL && i < (count - 2))
 	{
 		temp = temp->next_A;
-		count++;
+		i++;
 	}
 	temp->next_A = NULL;
 
 	write(1, "rra\n", 4);
+
+	tmp = *list;
+	printf("\n");
+	while(tmp != NULL)
+	{
+		printf("%d ", tmp->nbr);
+		tmp = tmp->next_A;
+	}
 }
 
 void	sort_nbr(t_list **list)
