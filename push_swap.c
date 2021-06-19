@@ -29,7 +29,7 @@ static void	check_str(int argc, char **argv)
 
 static void	write_element(t_list **list, char *str)
 {
-	int		number;
+	int			number;
 	t_list	*tmp;
 
 	number = ft_atoi_mod(str);
@@ -43,9 +43,9 @@ static void	write_element(t_list **list, char *str)
 
 static void	write_elem_space(t_list **list, char *str)
 {
-	int		number;
+	int			number;
 	t_list	*tmp;
-	char	**ptr;
+	char		**ptr;
 
 	ptr = ft_split(str, ' ');
 	while (*ptr)
@@ -63,7 +63,7 @@ static void	write_elem_space(t_list **list, char *str)
 
 void 	write_list(char **argv, t_list **list)
 {
-	t_list	*tmp;
+//	t_list	*tmp;
 
 	while (*argv)
 	{
@@ -74,78 +74,57 @@ void 	write_list(char **argv, t_list **list)
 		argv++;
 	}
 
-	tmp = *list;
-	while(tmp != NULL)
-	{
-		printf("%d ", tmp->nbr);
-		tmp = tmp->next;
-	}
+//	tmp = *list;
+//	while(tmp != NULL)
+//	{
+//		printf("%d ", tmp->nbr);
+//		tmp = tmp->next_A;
+//	}
 }
 
-static int	duplicat(int *arr, int number, int j)
+int 	check_check_duplicat(t_list *list, int nbr, int coun)
 {
 	int		i;
 
 	i = 0;
-	while (arr[i] && i < j)
+	while (list != NULL)
 	{
-		if (arr[i] == number)
+		if (list->nbr == nbr && i != coun)
 			return (0);
+		list = list->next_A;
 		i++;
 	}
 	return (1);
 }
 
-//static int	write_arr_space(t_list **list, char *str)
-//{
-//
-//}
-
-static int	check_duplicat(int size_list, char **argv)
+static void	check_duplicat(t_list **list)
 {
-	int		*arr;
-	int		i;
-	int		flag;
-	char	**ptr;
+	t_list	*duplicat;
+	int		coun;
 
-	i = 0;
-	arr = malloc(sizeof(int) * size_list);
-	if (!arr)
-		return (0x0);
-	while (*argv)
+	coun = 0;
+	duplicat = *list;
+	while (duplicat != NULL)
 	{
-		if (!ft_strchr_mod(*argv, ' ')) /** нет ' ' */
-		{
-			arr[i] = ft_atoi_mod(*argv);
-			flag = duplicat(arr, arr[i], i);
-		}
-		else
-		{
-			ptr = ft_split(*argv, ' ');
-			while (*ptr)
-			{
-				arr[i] = ft_atoi_mod(*ptr);
-				flag = duplicat(arr, arr[i], i);
-				ptr++;
-				i++;
-			}
-		}
-		i++;
-		argv++;
+		if (!check_check_duplicat(*list, duplicat->nbr, coun))
+			clear_list(list);
+		coun++;
+		duplicat = duplicat->next_A;
 	}
-	free(arr);
-	return (flag);
 }
 
 int main(int argc, char **argv)
 {
 	t_list	**list;
 	char	**temp;
+//	t_list	**a;
+//	t_list	**b;
 
-	if (argc > 1)
+
+	argv++;
+	argc--;
+	if (argc > 0)
 	{
-		argv++;
-		argc--;
 		temp = argv;
 		check_str(argc, temp);
 		list = malloc(sizeof(t_list *));
@@ -153,16 +132,10 @@ int main(int argc, char **argv)
 			close_program();
 		*list = 0x0;
 		write_list(temp, list);
-		if (!check_duplicat(ft_lstsize(*list), temp))
-			clear_list(list);
+		check_duplicat(list);
 		sort_nbr(list);
 	}
-
-
-//	free(temp);
-
-
-	if (argc <= 1)
+	if (argc <= 0)
 		close_program();
 	return (0);
 }

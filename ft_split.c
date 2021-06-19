@@ -39,7 +39,7 @@ temp)
 	return (*str);
 }
 
-static size_t 	ft_check_nbr_str(char const	*s, char	c)
+static size_t 	ft_check_nbr_str(char const	*s, char c)
 {
 	size_t	i;
 	size_t	nb_str;
@@ -95,12 +95,10 @@ char	**ft_split(char const *s, char c)
 	char	**str;
 	size_t	nb_str;
 
-	if (!s)
-		return (NULL);
 	nb_str = ft_check_nbr_str(s, c);
 	str = (char **)malloc(sizeof(char *) * (nb_str + 1));
 	if (!str)
-		return (NULL);
+		return (NULL); // ОБРАБОТАТЬ !!!
 	ft_nbr_index_and_copy(s, c, str, nb_str);
 	return (str);
 }
