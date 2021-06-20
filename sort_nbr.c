@@ -48,23 +48,32 @@ void	rra(t_list **list)
 	t_list	*tmp;
 	int		count;
 	int		i;
+	t_list	*a;
+
 
 
 	temp = *list;
+	a = *list;
 	count = 0;
 	i = 0;
-	while (*list != NULL) /** || count < ft_lstsize(temp)) */
+	while (*list != NULL && i < (ft_lstsize(temp) - 1))
 	{
 		*list = (*list)->next_A;
 		count++;
+		i++;
 	}
-	*list = temp->next_A;
-	while (temp != NULL && i < (count - 2))
+	(*list)->next_A = a;
+	temp = *list;
+	i = 0;
+	while (temp != NULL && i < (count))
 	{
 		temp = temp->next_A;
 		i++;
 	}
 	temp->next_A = NULL;
+
+
+
 
 	write(1, "rra\n", 4);
 
