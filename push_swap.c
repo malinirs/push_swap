@@ -144,7 +144,6 @@ int main(int argc, char **argv)
 		write_list(temp, list);
 		check_duplicat(list);
 		sort_nbr(list);
-		free_list(list);
 	}
 	if (argc <= 0)
 		close_program();

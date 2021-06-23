@@ -21,6 +21,69 @@ void	sa(t_list **list)
 	}
 }
 
+void	pa(t_list **list, t_list **push)
+{
+	t_list	*a;
+	t_list	*b;
+	t_list	*tmp;
+
+	a = *list;
+	b = *push;
+	*push = (*push)->next_B;
+	b->next_B = a;
+	*list = b;
+
+//	*list = (*list)->next_A;
+//	a->next_A = b;
+//	*push = a;
+
+//	write(1, "\n\n", 2);
+	write(1, "pa\n", 3);
+	tmp = *list;
+	printf("\nlist: ");
+	while(tmp != NULL)
+	{
+		printf("%d ", tmp->nbr);
+		tmp = tmp->next_A;
+	}
+	tmp = *push;
+	printf("\npush: ");
+	while(tmp != NULL)
+	{
+		printf("%d ", tmp->nbr);
+		tmp = tmp->next_A;
+	}
+}
+
+void	pb(t_list **list, t_list **push)
+{
+	t_list	*a;
+	t_list	*b;
+	t_list	*tmp;
+
+	a = *list;
+	b = *push;
+	*list = (*list)->next_A;
+	a->next_A = b;
+	*push = a;
+
+	write(1, "pb", 2);
+	tmp = *list;
+	printf("\nlist: ");
+	while(tmp != NULL)
+	{
+		printf("%d ", tmp->nbr);
+		tmp = tmp->next_A;
+	}
+	tmp = *push;
+	printf("\npush: ");
+	while(tmp != NULL)
+	{
+		printf("%d ", tmp->nbr);
+		tmp = tmp->next_A;
+	}
+}
+
 void	ra(t_list **list)
 {
 	t_list	*tmp;
@@ -60,7 +123,6 @@ void	rra(t_list **list)
 
 	write(1, "rra\n", 4);
 	tmp = *list;
-	printf("\n");
 	while(tmp != NULL)
 	{
 		printf("%d ", tmp->nbr);
@@ -70,7 +132,24 @@ void	rra(t_list **list)
 
 void	sort_nbr(t_list **list)
 {
+	t_list	*push;
+	t_list	*tmp;
+
 //	sa(list);
+//	pb(list, &push);
+	pb(list, &push);
+	pa(list, &push);
+//	pb(list, &push);
 //	ra(list);
-	rra(list);
+//	rra(list);
+
+//	tmp = *list;
+//	while(tmp != NULL)
+//	{
+//		printf("%d ", tmp->nbr);
+//		tmp = tmp->next_A;
+//	}
+
+	free_list(list);
+//	free_list(&push);
 }
