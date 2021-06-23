@@ -17,10 +17,14 @@ static void	check_str(int argc, char **argv)
 			if (ft_strlen(argv[j]) == 1 && (argv[j][i] == '-' || \
 			argv[j][i] == '+'))
 				close_program();
-			if (ft_strlen(argv[j]) > 1 && ((argv[j][i] == '+' ||
-			argv[j][i] == '-' || argv[j][i] == ' ') && \
-			!ft_isdigit_mod(argv[j][++i])))
+			if (ft_strlen(argv[j]) > 1 && ((argv[j][i] == '+' || \
+			argv[j][i] == '-') && ((argv[j][++i] == '+' || \
+			argv[j][i] == '-'))))
 				close_program();
+			if (ft_strlen(argv[j]) > 1 && ft_isdigit_mod(argv[j][i]) && \
+			(argv[j][++i] == '+' || argv[j][i] == '-'))
+				close_program();
+
 			i++;
 		}
 		i = 0;
@@ -43,22 +47,31 @@ static void	write_element(t_list **list, char *str)
 
 static void	write_elem_space(t_list **list, char *str)
 {
-	int			number;
+	int		number;
 	t_list	*tmp;
-	char		**ptr;
+	char	**ptr;
+	char	**q;
+	int		j = 0;
 
 	ptr = ft_split(str, ' ');
-	while (*ptr)
+	q = ptr;
+	while (*q)
 	{
-		number = ft_atoi_mod(*ptr);
+		number = ft_atoi_mod(*q);
 		if (number >= INT32_MAX || number <= INT32_MIN)
 			clear_list(list);
 		tmp = ft_lstnew(number);
 		if (!tmp)
 			clear_list(list);
 		ft_lstadd_back(list, tmp);
-		ptr++;
+		q++;
 	}
+	while (ptr[j])
+	{
+		free(ptr[j]);
+		j++;
+	}
+	free(ptr);
 }
 
 void 	write_list(char **argv, t_list **list)
@@ -117,9 +130,6 @@ int main(int argc, char **argv)
 {
 	t_list	**list;
 	char	**temp;
-//	t_list	**a;
-//	t_list	**b;
-
 
 	argv++;
 	argc--;
@@ -134,8 +144,11 @@ int main(int argc, char **argv)
 		write_list(temp, list);
 		check_duplicat(list);
 		sort_nbr(list);
+		free_list(list);
 	}
 	if (argc <= 0)
 		close_program();
+//	while (1)
+//		;
 	return (0);
 }
