@@ -3,8 +3,11 @@ NAME = push_swap.a
 SRCS =	push_swap.c \
 		utils.c \
 		list.c \
-		sort_nbr.c \
-		ft_split.c
+		rules_swap.c \
+		ft_split.c \
+		swap_and_push.c \
+		rotate.c \
+		reverse_rotate.c
 
 #LIBFT = libft/libft.a
 

@@ -5,11 +5,11 @@ static void	check_str(int argc, char **argv)
 	int		i;
 	int		j;
 
-	i = 0;
 	j = -1;
 	argc--;
 	while (argv[argc][i] && ++j <= argc)
 	{
+		i = 0;
 		while (argv[j][i])
 		{
 			if (!ft_isdigit_mod(argv[j][i]))
@@ -27,7 +27,6 @@ static void	check_str(int argc, char **argv)
 
 			i++;
 		}
-		i = 0;
 	}
 }
 
@@ -91,7 +90,7 @@ void 	write_list(char **argv, t_list **list)
 //	while(tmp != NULL)
 //	{
 //		printf("%d ", tmp->nbr);
-//		tmp = tmp->next_A;
+//		tmp = tmp->next;
 //	}
 }
 
@@ -104,7 +103,7 @@ int 	check_check_duplicat(t_list *list, int nbr, int coun)
 	{
 		if (list->nbr == nbr && i != coun)
 			return (0);
-		list = list->next_A;
+		list = list->next;
 		i++;
 	}
 	return (1);
@@ -122,7 +121,7 @@ static void	check_duplicat(t_list **list)
 		if (!check_check_duplicat(*list, duplicat->nbr, coun))
 			clear_list(list);
 		coun++;
-		duplicat = duplicat->next_A;
+		duplicat = duplicat->next;
 	}
 }
 
@@ -143,7 +142,7 @@ int main(int argc, char **argv)
 		*list = 0x0;
 		write_list(temp, list);
 		check_duplicat(list);
-		sort_nbr(list);
+		rules_swap(list);
 	}
 	if (argc <= 0)
 		close_program();

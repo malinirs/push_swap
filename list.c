@@ -7,10 +7,10 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	if (!(*lst))
 		*lst = new;
 	new_lst = *lst;
-	while (new_lst->next_A != NULL)
-		new_lst = new_lst->next_A;
-	new_lst->next_A = new;
-	new->next_A = NULL;
+	while (new_lst->next != NULL)
+		new_lst = new_lst->next;
+	new_lst->next = new;
+	new->next = NULL;
 }
 
 t_list	*ft_lstnew(int nbr)
@@ -19,9 +19,9 @@ t_list	*ft_lstnew(int nbr)
 
 	new = malloc(sizeof(t_list));
 	if (!new)
-		return (0x0);
+		return (0);
 	new->nbr = nbr;
-	new->next_A = NULL;
+	new->next = NULL;
 	return (new);
 }
 
@@ -31,7 +31,7 @@ void	free_list(t_list **list)
 
 	while (*list != NULL)
 	{
-		temp = (*list)->next_A;
+		temp = (*list)->next;
 		free(*list);
 		*list = temp;
 	}
@@ -48,13 +48,11 @@ int	ft_lstsize(t_list	*lst)
 	int		i;
 	t_list	*new_lst;
 
-	if (!lst)
-		return (0);
 	i = 0;
 	new_lst = lst;
 	while (new_lst != NULL)
 	{
-		new_lst = new_lst->next_A;
+		new_lst = new_lst->next;
 		i++;
 	}
 	return (i);
