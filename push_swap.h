@@ -11,8 +11,6 @@ typedef struct s_list
 //	int				order; /** порядок в котором находится это значение в уже отсортированном массиве */
 //	int				count; /** флаг, который помечает,что этот элемент стека А уже был в стеке Б */
 	struct s_list	*next; /** ссылка на следующий лист */
-//	struct s_list *previous; /** ссылка на предыдущий лист */
-//	struct s_list	*next;
 }				t_list;
 
 void	close_program(void);

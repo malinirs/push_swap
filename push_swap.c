@@ -19,12 +19,11 @@ static void	check_str(int argc, char **argv)
 				close_program();
 			if (ft_strlen(argv[j]) > 1 && ((argv[j][i] == '+' || \
 			argv[j][i] == '-') && ((argv[j][++i] == '+' || \
-			argv[j][i] == '-'))))
+			argv[j][i] == '-'))) && (argv[j][i] != '\0'))
 				close_program();
 			if (ft_strlen(argv[j]) > 1 && ft_isdigit_mod(argv[j][i]) && \
-			(argv[j][++i] == '+' || argv[j][i] == '-'))
+			(argv[j][++i] == '+' || argv[j][i] == '-') && (argv[j][i] != '\0'))
 				close_program();
-
 			i++;
 		}
 	}
@@ -36,7 +35,7 @@ static void	write_element(t_list **list, char *str)
 	t_list	*tmp;
 
 	number = ft_atoi_mod(str);
-	if (number >= INT32_MAX || number <= INT32_MIN)
+	if (number > INT32_MAX || number < INT32_MIN)
 		clear_list(list);
 	tmp = ft_lstnew(number);
 	if (!tmp)
