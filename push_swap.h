@@ -13,6 +13,14 @@ typedef struct s_list
 	struct s_list	*next; /** ссылка на следующий лист */
 }				t_list;
 
+typedef struct s_size
+{
+	t_list			*a;
+	t_list			*b;
+	int				size_a;
+	int				size_b;
+}				t_size;
+
 void	close_program(void);
 int		ft_isdigit_mod(int c);
 int		ft_atoi_mod(char *str);

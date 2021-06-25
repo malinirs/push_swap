@@ -7,9 +7,10 @@ static void	check_str(int argc, char **argv)
 
 	j = -1;
 	argc--;
-	while (argv[argc][i] && ++j <= argc)
+	while (argv[j][i] && ++j <= argc)
 	{
 		i = 0;
+
 		while (argv[j][i])
 		{
 			if (!ft_isdigit_mod(argv[j][i]))
@@ -19,10 +20,10 @@ static void	check_str(int argc, char **argv)
 				close_program();
 			if (ft_strlen(argv[j]) > 1 && ((argv[j][i] == '+' || \
 			argv[j][i] == '-') && ((argv[j][++i] == '+' || \
-			argv[j][i] == '-'))) && (argv[j][i] != '\0'))
+			argv[j][i] == '-'))))
 				close_program();
 			if (ft_strlen(argv[j]) > 1 && ft_isdigit_mod(argv[j][i]) && \
-			(argv[j][++i] == '+' || argv[j][i] == '-') && (argv[j][i] != '\0'))
+			(argv[j][++i] == '+' || argv[j][i] == '-'))
 				close_program();
 			i++;
 		}
@@ -124,10 +125,24 @@ static void	check_duplicat(t_list **list)
 	}
 }
 
+//t_size	*assignment(t_list *list, t_list *swap)
+//{
+//	t_size	*size;
+//
+//	size->a = list;
+//	size->b = swap;
+//	size->size_a = ft_lstsize(size->a);
+//	size->size_b = ft_lstsize(size->b);
+//	return (size);
+//}
+
 int main(int argc, char **argv)
 {
-	t_list	**list;
+	t_list	*list;
+//	t_list	*swap;
 	char	**temp;
+//	t_size	*size;
+//	swap = 0x0;
 
 	argv++;
 	argc--;
@@ -135,13 +150,19 @@ int main(int argc, char **argv)
 	{
 		temp = argv;
 		check_str(argc, temp);
-		list = malloc(sizeof(t_list *));
+		list = malloc(sizeof(t_list));
 		if (!list)
 			close_program();
-		*list = 0x0;
-		write_list(temp, list);
-		check_duplicat(list);
-		rules_swap(list);
+		list = 0x0;
+
+		write_list(temp, &list);
+		check_duplicat(&list);
+//		size = malloc(sizeof(t_size));
+//		if (!size)
+//			clear_list(&list);
+//		size = assignment(list, swap);
+		rules_swap(&list);
+
 	}
 	if (argc <= 0)
 		close_program();

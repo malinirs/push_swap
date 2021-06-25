@@ -2,13 +2,24 @@
 
 void	sa(t_list **list)
 {
-	t_list	*a;
+//	t_list	*a;
 	t_list	*t;
 
-	a = *list; /** a->b->c */
-	*list = (*list)->next; /** *list: b->c, первый эл-т это b */
-	a->next = (*list)->next; /** a->c, ссылка 1 эл-та = 3 эл-ту*/
-	(*list)->next = a; /** b->a, итого b->a->c */
+	t_list *a;
+	t_list *b;
+	t_list *c;
+
+	a = *list;
+	b = a->next;
+	c = b->next; // c = a->next->next;
+	*list = b;
+	b->next = a;
+	a->next = c;
+
+//	a = *list; /** a->b->c */
+//	*list = (*list)->next; /** *list: b->c, первый эл-т это b */
+//	a->next = (*list)->next; /** a->c, ссылка 1 эл-та = 3 эл-ту*/
+//	(*list)->next = a; /** b->a, итого b->a->c */
 
 
 	write(1, "sa\n", 3);
@@ -82,7 +93,7 @@ void	pb(t_list **list, t_list **swap)
 {
 	t_list	*a;
 	t_list	*b;
-//	t_list	*tmp;
+	t_list	*tmp;
 
 	a = *list;
 	b = *swap;
@@ -91,18 +102,18 @@ void	pb(t_list **list, t_list **swap)
 	*swap = a;
 
 	write(1, "pb\n", 3);
-//	tmp = *list;
-//	printf("\nlist: ");
-//	while(tmp != NULL)
-//	{
-//		printf("%d ", tmp->nbr);
-//		tmp = tmp->next;
-//	}
-//	tmp = *swap;
-//	printf("\nswap: ");
-//	while(tmp != NULL)
-//	{
-//		printf("%d ", tmp->nbr);
-//		tmp = tmp->next;
-//	}
+	tmp = *list;
+	printf("\nlist: ");
+	while(tmp != NULL)
+	{
+		printf("%d ", tmp->nbr);
+		tmp = tmp->next;
+	}
+	tmp = *swap;
+	printf("\nswap: ");
+	while(tmp != NULL)
+	{
+		printf("%d ", tmp->nbr);
+		tmp = tmp->next;
+	}
 }

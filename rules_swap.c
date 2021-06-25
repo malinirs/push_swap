@@ -1,50 +1,35 @@
 #include "push_swap.h"
 
-static void	sorted_array(t_list **list, int *sort, int n)
+static void	sorted_array(int *sort, int n)
 {
-	int		i;
-	int 	x;
-	int 	j;
+	int 	i;
+	int		j;
+	int 	temp;
 
-	i = 1;
-	while (sort[i])
+	j = 1;
+	while (sort[j] && j < n)
 	{
-		x = sort[i];
-		j = i;
-		while (j > 0 && sort[j - 1] > x)
+		i = j;
+		temp = sort[j];
+		while (temp < sort[i - 1] && i > 0)
 		{
-			sort[j] = sort[j - 1];
-			j--;
+			sort[i] = sort[i - 1];
+			i--;
 		}
-		sort[j] = x;
-		i++;
+		sort[i] = temp;
+		j++;
 	}
 
 	i = 0;
-	while (sort[i])
+	while (sort[i] && i < n)
 	{
 		printf("%d ", sort[i]);
 		i++;
 	}
 }
 
-//{
-//	for i = 2 to n do
-//		x = A[i]
-//		j = i
-//		while (int j > 1 and A[j-1] > x) do
-//			A[j] = A[j-1]
-//			j = j - 1
-//		end while
-//		A[j] = x;
-//	end for[7]
-//}
-
-void	rules_swap(t_list **list)
+static int	*create_int_array(t_list **list)
 {
-	t_list	*swap;
-//	t_list	*tmp;
-
 	t_list	*t;
 	int		*sort;
 	int		i;
@@ -52,33 +37,47 @@ void	rules_swap(t_list **list)
 
 	t = *list;
 	n = ft_lstsize(t);
-	sort = malloc(sizeof(t_list) * n);
+	sort = malloc(sizeof(int) * n);
 	if (!sort)
 		clear_list(list);
 	i = 0;
 	while (t != NULL)
 	{
-		sort[i++] = t->nbr;
+		sort[i] = t->nbr;
 		t = t->next;
+		i++;
 	}
-	sorted_array(list, sort, n);
+	return (sort);
+}
+
+void	rules_swap(t_list **list)
+{
+	t_list	*swap;
+	int		*sort;
+	int n = ft_lstsize(*list);
+
+
+
+
+	sort = create_int_array(list);
+	sorted_array(sort, n);
 
 
 //	sa(list);
-//	pb(list, &swap);
+	pb(list, &swap);
 //	pb(list, &swap);
 //	pb(list, &swap);
 //	sb(&swap);
 //	ss(list, &swap);
-//	pa(list, &push);
-//	pb(list, &push);
+//	pa(list, &swap);
+//	pb(list, &swap);
 //	ra(list);
 //	rb(&swap);
 //	rr(list, &swap);
 //	rra(list);
 //	rrb(&swap);
 //	rrr(list, &swap);
-//	tmp = *list;
+//	tmp = swap;
 //	while(tmp != NULL)
 //	{
 //		printf("%d ", tmp->nbr);
