@@ -7,7 +7,8 @@ SRCS =	push_swap.c \
 		ft_split.c \
 		swap_and_push.c \
 		rotate.c \
-		reverse_rotate.c
+		reverse_rotate.c \
+		geater_than.c
 
 #LIBFT = libft/libft.a
 

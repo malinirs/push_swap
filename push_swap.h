@@ -8,8 +8,8 @@
 typedef struct s_list
 {
 	int				nbr; /** значение, которое нужно отсортировать */
-	int				order; /** порядок в котором находится это значение в уже отсортированном массиве */
-//	int				count; /** флаг, который помечает,что этот элемент стека А уже был в стеке Б */
+	int				order; /** порядок, в котором находится это значение в уже отсортированном массиве */
+	int				keep_A; /** хранить ли элемент в стеке А? */
 	struct s_list	*next; /** ссылка на следующий лист */
 }				t_list;
 
@@ -43,5 +43,6 @@ void	rr(t_list **list, t_list **swap);
 void	rra(t_list **list);
 void	rrb(t_list **swap);
 void	rrr(t_list **list, t_list **swap);
+void	geater_than(t_list **list, t_size len);
 
 #endif

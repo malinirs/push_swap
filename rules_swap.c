@@ -64,12 +64,12 @@ static void	write_order(t_list **list, int *sort, t_size *len)
 		temp = temp->next;
 	}
 
-	temp = *list;
-	while (temp != NULL)
-	{
-		printf("%d ", temp->order);
-		temp = temp->next;
-	}
+//	temp = *list;
+//	while (temp != NULL)
+//	{
+//		printf("%d ", temp->order);
+//		temp = temp->next;
+//	}
 
 }
 
@@ -92,16 +92,8 @@ void	rules_swap(t_list **list)
 	len = init(*list, swap);
 	sort = create_int_array(list);
 	sorted_array(sort, &len);
-
-//	int i = 0;
-//	while (sort[i] && i < len.size_a)
-//	{
-//		printf("%d ", sort[i]);
-//		i++;
-//	}
-//	printf("\n");
-
 	write_order(list, sort, &len);
+	geater_than(list, len);
 
 
 //	sa(list);
