@@ -5,12 +5,12 @@ static void	check_str(int argc, char **argv)
 	int		i;
 	int		j;
 
+	i = 0;
 	j = -1;
 	argc--;
 	while (argv[j][i] && ++j <= argc)
 	{
 		i = 0;
-
 		while (argv[j][i])
 		{
 			if (!ft_isdigit_mod(argv[j][i]))
@@ -75,7 +75,7 @@ static void	write_elem_space(t_list **list, char *str)
 
 void 	write_list(char **argv, t_list **list)
 {
-	t_list	*tmp;
+//	t_list	*tmp;
 
 	while (*argv)
 	{
@@ -86,13 +86,13 @@ void 	write_list(char **argv, t_list **list)
 		argv++;
 	}
 
-	tmp = *list;
-	while(tmp != NULL)
-	{
-		printf("%d ", tmp->nbr);
-		tmp = tmp->next;
-	}
-	printf("\n\n");
+//	tmp = *list;
+//	while(tmp != NULL)
+//	{
+//		printf("%d ", tmp->nbr);
+//		tmp = tmp->next;
+//	}
+//	printf("\n\n");
 }
 
 int 	check_check_duplicat(t_list *list, int nbr, int coun)

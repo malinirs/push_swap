@@ -58,7 +58,7 @@ void	ss(t_list **list, t_list **swap)
 	sb(swap);
 }
 
-void	pa(t_list **list, t_list **swap)
+void	pa(t_list **list, t_list **swap, t_size *len)
 {
 	t_list	*a;
 	t_list	*b;
@@ -69,10 +69,10 @@ void	pa(t_list **list, t_list **swap)
 	*swap = (*swap)->next;
 	b->next = a;
 	*list = b;
-
-
-
 	write(1, "pa\n", 3);
+	len->size_a++;
+	len->size_b--;
+
 	tmp = *list;
 	printf("\nlist: ");
 	while(tmp != NULL)
@@ -89,7 +89,7 @@ void	pa(t_list **list, t_list **swap)
 	}
 }
 
-void	pb(t_list **list, t_list **swap)
+void	pb(t_list **list, t_list **swap, t_size *len)
 {
 	t_list	*a;
 	t_list	*b;
@@ -100,8 +100,11 @@ void	pb(t_list **list, t_list **swap)
 	*list = (*list)->next;
 	a->next = b;
 	*swap = a;
-
 	write(1, "pb\n", 3);
+	len->size_a--;
+	len->size_b++;
+
+
 	tmp = *list;
 	printf("\nlist: ");
 	while(tmp != NULL)
