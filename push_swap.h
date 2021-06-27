@@ -9,7 +9,8 @@ typedef struct s_list
 {
 	int				nbr; /** значение, которое нужно отсортировать */
 	int				order; /** порядок, в котором находится это значение в уже отсортированном массиве */
-	int				keep_A; /** хранить ли элемент в стеке А? */
+	int				keep_A_geater; /** хранить ли элемент в стеке А? */
+	int				keep_A_index;
 	struct s_list	*next; /** ссылка на следующий лист */
 }				t_list;
 
@@ -43,6 +44,10 @@ void	rr(t_list **list, t_list **swap);
 void	rra(t_list **list);
 void	rrb(t_list **swap);
 void	rrr(t_list **list, t_list **swap);
-void	geater_than(t_list **list, t_size len);
+void	markup_mode(t_list **list, t_size len);
+t_list	*geater_than(t_list **list, t_size len);
+int		comparison_Keep_A(t_list *list);
+void	write_Keep_A_geater_than(t_list **list, t_list *head_geater_than);
+t_list	*by_index(t_list **list, t_size len);
 
 #endif

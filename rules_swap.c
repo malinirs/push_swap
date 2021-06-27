@@ -73,7 +73,7 @@ static void	write_order(t_list **list, int *sort, t_size *len)
 
 }
 
-t_size	init(t_list *list, t_list *swap)
+static t_size	init(t_list *list, t_list *swap)
 {
 	t_size	len;
 
@@ -93,7 +93,7 @@ void	rules_swap(t_list **list)
 	sort = create_int_array(list);
 	sorted_array(sort, &len);
 	write_order(list, sort, &len);
-	geater_than(list, len);
+	markup_mode(list, len);
 
 
 //	sa(list);
