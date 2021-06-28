@@ -88,17 +88,17 @@ void	write_Keep_A_geater_than(t_list **list, t_list *head_geater_than)
 	temp = *list;
 	while (temp != head_geater_than)
 	{
-		temp->keep_A_geater = 0;
+		temp->keep_A = 0;
 		temp = temp->next;
 	}
 	if (temp->nbr == head_geater_than->nbr)
-		temp->keep_A_geater = 1;
+		temp->keep_A = 1;
 	temp = temp->next;
 	while (temp != NULL)
 	{
 		if (head_geater_than->nbr < temp->nbr)
 		{
-			temp->keep_A_geater = 1;
+			temp->keep_A = 1;
 			head_geater_than = temp;
 		}
 		temp = temp->next;
@@ -107,7 +107,7 @@ void	write_Keep_A_geater_than(t_list **list, t_list *head_geater_than)
 //	temp = *list;
 //	while (temp != NULL)
 //	{
-//		printf("%d ", temp->keep_A_geater);
+//		printf("%d ", temp->keep_A);
 //		temp = temp->next;
 //	}
 }
@@ -120,8 +120,8 @@ void	markup_mode(t_list **list, t_size len)
 	head_geater_than = geater_than(list, len);
 //	printf("nbr = %d\n", head_geater_than->nbr);
 //	printf("order = %d\n", head_geater_than->order);
-	write_Keep_A_geater_than(list, head_geater_than);
+//	write_Keep_A_geater_than(list, head_geater_than);
 
-//	head_by_index = by_index(list, len);
+	head_by_index = by_index(list, len);
 
 }

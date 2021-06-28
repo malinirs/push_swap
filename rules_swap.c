@@ -34,12 +34,31 @@ static int	*create_int_array(t_list **list)
 	if (!sort)
 		clear_list(list);
 	i = 0;
+
+
+//	printf("\nwrite sort =");
+
+
 	while (t != NULL)
 	{
 		sort[i] = t->nbr;
 		t = t->next;
+//		printf("% d", sort[i]);
 		i++;
 	}
+
+
+
+//
+//	printf("\nbefor sort1 =");
+//	i = 0;
+//	while (i < n)
+//	{
+//		printf("% d", sort[i]);
+//		i++;
+//	}
+
+
 	return (sort);
 }
 
@@ -91,6 +110,15 @@ void	rules_swap(t_list **list)
 	swap = NULL;
 	len = init(*list, swap);
 	sort = create_int_array(list);
+
+//	printf("\nbefor sort =");
+//	int i = 0;
+//	while (i < 5)
+//	{
+//		printf("% d", sort[i]);
+//		i++;
+//	}
+
 	sorted_array(sort, &len);
 	write_order(list, sort, &len);
 	markup_mode(list, len);
@@ -115,6 +143,22 @@ void	rules_swap(t_list **list)
 //	{
 //		printf("%d ", tmp->nbr);
 //		tmp = tmp->next;
+//	}
+
+//	printf("\nlist = ");
+//	t_list *temp = *list;
+//	while (temp != NULL)
+//	{
+//		printf("% d", temp->nbr);
+//		temp = temp->next;
+//	}
+//
+//	i = 0;
+//	printf("\nsort =");
+//	while (sort[i] && i < 5)
+//	{
+//		printf("% d", sort[i]);
+//		i++;
 //	}
 
 	free_list(list);
