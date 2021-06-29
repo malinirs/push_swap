@@ -1,15 +1,49 @@
 #include "push_swap.h"
 
-static t_list	*selection(int *arr, t_list *list, t_size len)
+void	write_Keep_A(t_list **list, t_list *head)
+{
+	t_list	*temp;
+
+	temp = *list;
+	while (temp != head)
+	{
+		temp->keep_A = 0;
+		temp = temp->next;
+	}
+	if (temp->nbr == head->nbr)
+		temp->keep_A = 1;
+	temp = temp->next;
+	while (temp != NULL)
+	{
+		if (head->nbr < temp->nbr)
+		{
+			temp->keep_A = 1;
+			head = temp;
+		}
+		temp = temp->next;
+	}
+
+	printf("\nKeep_A = ");
+	temp = *list;
+	while (temp != NULL)
+	{
+		printf("%d ", temp->keep_A);
+		temp = temp->next;
+	}
+}
+
+int	*selection(int *arr, t_list **list, t_size len)
 {
 	int		i;
 	int		j;
 	int		max;
-	t_list	*head;
+//	t_list	*head;
+	int		*head;
 
 	j = 0;
 	i = j + 1;
 	max = arr[j];
+//	temp = arr;
 	while (arr[i] && i < len.size_a)
 	{
 		if (max < arr[i])
@@ -19,11 +53,13 @@ static t_list	*selection(int *arr, t_list *list, t_size len)
 		}
 		i++;
 	}
-	i = -1;
-	while (list != NULL && ++i < j)
-		list = list->next;
-	head = list; /** markup_head */
-	return (head);
+//	i = -1;
+//	head = *list; /** markup_head */
+//	while (head != NULL && ++i < j)
+//		head = head->next;
+//	head = list; /** markup_head */
+	head = arr;
+	return (&head[j]);
 }
 
 int	comparison_Keep_A(t_list *list)
@@ -54,20 +90,13 @@ int	comparison_Keep_A(t_list *list)
 	return (count);
 }
 
-t_list	*geater_than(t_list **list, t_size len)
+static int	*greater_than(t_list **list, t_size len, int *arr)
 {
 	t_list	*temp;
-	int		*arr;
 	int		i;
-	t_list	*head;
+	int		*max;
 
 	temp = *list;
-	arr = malloc(sizeof(int) * len.size_a);
-	if (!arr)
-	{
-		arr = NULL;
-		clear_list(list);
-	}
 	i = 0;
 	while (temp != NULL)
 	{
@@ -76,52 +105,59 @@ t_list	*geater_than(t_list **list, t_size len)
 		i++;
 	}
 	arr[--i] = 1;
-	head = selection(arr, *list, len);
-	free(arr);
-	return (head);
-}
-
-void	write_Keep_A_geater_than(t_list **list, t_list *head_geater_than)
-{
-	t_list	*temp;
-
-	temp = *list;
-	while (temp != head_geater_than)
-	{
-		temp->keep_A = 0;
-		temp = temp->next;
-	}
-	if (temp->nbr == head_geater_than->nbr)
-		temp->keep_A = 1;
-	temp = temp->next;
-	while (temp != NULL)
-	{
-		if (head_geater_than->nbr < temp->nbr)
-		{
-			temp->keep_A = 1;
-			head_geater_than = temp;
-		}
-		temp = temp->next;
-	}
-
-//	temp = *list;
-//	while (temp != NULL)
-//	{
-//		printf("%d ", temp->keep_A);
-//		temp = temp->next;
-//	}
+	max = selection(arr, list, len);
+	return (max);
 }
 
 void	markup_mode(t_list **list, t_size len)
 {
-	t_list	*head_geater_than;
-	t_list	*head_by_index;
+	int		*greater;
+	int		*index;
+	int		*arr;
+	int		*mass;
+	t_list	*temp;
 
-	head_geater_than = geater_than(list, len);
-//	printf("nbr = %d\n", head_geater_than->nbr);
-//	printf("order = %d\n", head_geater_than->order);
-//	write_Keep_A_geater_than(list, head_geater_than);
+	arr = malloc(sizeof(int) * len.size_a);
+	if (!arr)
+	{
+		arr = NULL;
+		clear_list(list);
+	}
 
-	head_by_index = by_index(list, len);
+	greater = greater_than(list, len, arr);
 
+	printf("greater nbr = %d\n", *greater);
+
+	mass = malloc(sizeof(int) * len.size_a);
+	if (!mass)
+	{
+		mass = NULL;
+		clear_list(list);
+	}
+	index = by_index(list, len, mass);
+
+	printf("\n");
+	printf("index nbr = %d\n", *index);
+
+	int i = 0;
+	temp = *list;
+	if (*greater > *index)
+	{
+//		while ()
+		write_Keep_A(list, greater);
+	}
+	else
+	{
+		while (mass[i] != *index)
+		{
+			i++;
+			temp = temp->next;
+		}
+		qwe_comparison_A(list, temp);
+	}
+
+
+
+	free(arr);
+	free(mass);
 }

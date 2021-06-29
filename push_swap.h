@@ -44,9 +44,11 @@ void	rra(t_list **list);
 void	rrb(t_list **swap);
 void	rrr(t_list **list, t_list **swap);
 void	markup_mode(t_list **list, t_size len);
-t_list	*geater_than(t_list **list, t_size len);
 int		comparison_Keep_A(t_list *list);
-void	write_Keep_A_geater_than(t_list **list, t_list *head_geater_than);
-t_list	*by_index(t_list **list, t_size len);
+void	write_Keep_A(t_list **list, t_list *head);
+t_list	*by_index(t_list **list, t_size len, int *arr);
+int		*selection(int *arr, t_list **list, t_size len);
+int		comparison_A(t_list *t, t_list *list);
+void	qwe_comparison_A(t_list **t, t_list *list);
 
 #endif

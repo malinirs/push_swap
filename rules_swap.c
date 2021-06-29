@@ -1,24 +1,33 @@
 #include "push_swap.h"
 
-static void	sorted_array(int *sort, t_size	*len)
+static void	sorted_array(int *arr, t_size *len)
 {
-	int 	i;
+	int		i;
 	int		j;
-	int 	temp;
+	int		temp;
 
 	j = 1;
-	while (sort[j] && j < len->size_a)
+	while (j < len->size_a)
 	{
-		i = j;
-		temp = sort[j];
-		while (temp < sort[i - 1] && i > 0)
+		temp = arr[j];
+		i = j - 1;
+		while (temp < arr[i] && i >= 0)
 		{
-			sort[i] = sort[i - 1];
+			arr[i + 1] = arr[i];
 			i--;
 		}
-		sort[i] = temp;
+		arr[i + 1] = temp;
 		j++;
 	}
+
+
+//	printf("\nsort =");
+//	j = 0;
+//	while (j < 5)
+//	{
+//		printf("% d", arr[j]);
+//		j++;
+//	}
 }
 
 static int	*create_int_array(t_list **list)
@@ -110,15 +119,6 @@ void	rules_swap(t_list **list)
 	swap = NULL;
 	len = init(*list, swap);
 	sort = create_int_array(list);
-
-//	printf("\nbefor sort =");
-//	int i = 0;
-//	while (i < 5)
-//	{
-//		printf("% d", sort[i]);
-//		i++;
-//	}
-
 	sorted_array(sort, &len);
 	write_order(list, sort, &len);
 	markup_mode(list, len);

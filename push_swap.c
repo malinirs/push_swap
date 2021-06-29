@@ -8,7 +8,7 @@ static void	check_str(int argc, char **argv)
 	i = 0;
 	j = -1;
 	argc--;
-	while (argv[j][i] && ++j <= argc)
+	while (argv[j][i] && ++j <= argc) /** ПЕРЕДЕЛАТЬ ЭТО ДЕРЬМО!!! */
 	{
 		i = 0;
 		while (argv[j][i])

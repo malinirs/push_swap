@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static int	comparison_A(t_list *t, t_list *list)
+int	comparison_A(t_list *t, t_list *list)
 {
 	int		count;
 	t_list	*temp;
@@ -28,57 +28,59 @@ static int	comparison_A(t_list *t, t_list *list)
 		}
 		temp = temp->next;
 	}
-//	t->next = list;
-//	while (t != temp)
-//	{
-//		count++;
-//		t = t->next;
-//	}
-
 	return (count);
 }
 
-t_list	*by_index(t_list **list, t_size len)
+t_list	*by_index(t_list **list, t_size len, int *mass)
 {
 	t_list	*temp;
-	int		*arr;
 	int		i;
-	t_list	*head;
+	int		*max;
 
 
 	temp = *list;
-	arr = malloc(sizeof(int) * len.size_a);
-	if (!arr)
-	{
-		arr = NULL;
-		clear_list(list);
-	}
-//	while (temp != NULL)
-//		temp = temp->next;
-//	temp->next = *list;
 	i = 0;
 	while (temp != NULL)
 	{
-		arr[i] = comparison_A(temp, *list) + 1;
-//		t = t->next;
+		mass[i] = comparison_A(temp, *list) + 1;
 		temp = temp->next;
-//		printf("%d ", arr[i]);
 		i++;
 	}
-//	arr[--i] = 1;
+	max = selection(mass, list, len);
+	return (max);
+}
 
-	printf("\narr =");
-	i = 0;
-	while (i <  len.size_a)
+void	qwe_comparison_A(t_list **t, t_list *list)
+{
+//		 НАПИСАТЬ ФУНКЦИЮ, КОТОРАЯ ЗАПИСЫВАЕТ 0 и 1
+
+	t_list	*temp;
+	int		i;
+
+	temp = *t;
+	i = (*t)->order + 1;
+	(*t)->keep_A = 1;
+	while (temp != NULL)
 	{
-		printf("% d", arr[i]);
-		i++;
+		if (temp->order == i)
+		{
+			(*t)->keep_A = 1;
+			i++;
+		}
+		else
+			(*t)->keep_A = 0;
+		temp = temp->next;
 	}
-
-
-
-
-//	head = selection(arr, *list, len);
-	free(arr);
-	return (head);
+	temp = list;
+	while (temp != *t)
+	{
+		if (temp->order == i)
+		{
+			(*t)->keep_A = 1;
+			i++;
+		}
+		else
+			(*t)->keep_A = 0;
+		temp = temp->next;
+	}
 }
