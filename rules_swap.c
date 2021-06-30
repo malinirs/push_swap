@@ -107,6 +107,8 @@ static t_size	init(t_list *list, t_list *swap)
 
 	len.size_a = ft_lstsize(list);
 	len.size_b = ft_lstsize(swap);
+	len.index_a = 0;
+	len.greater_a = 0;
 	return (len);
 }
 
@@ -121,7 +123,7 @@ void	rules_swap(t_list **list)
 	sort = create_int_array(list);
 	sorted_array(sort, &len);
 	write_order(list, sort, &len);
-	markup_mode(list, len);
+	markup_mode(list, &len);
 
 
 //	sa(list);

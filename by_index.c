@@ -31,7 +31,7 @@ int	comparison_A(t_list *t, t_list *list)
 	return (count);
 }
 
-t_list	*by_index(t_list **list, t_size len, int *mass)
+int	by_index(t_list **list, t_size *len, int *mass)
 {
 	t_list	*temp;
 	int		i;
@@ -46,41 +46,121 @@ t_list	*by_index(t_list **list, t_size len, int *mass)
 		temp = temp->next;
 		i++;
 	}
-	max = selection(mass, list, len);
-	return (max);
+	max = selection(mass, len);
+	i = -1;
+	while (mass[i] != *max)
+		i++;
+
+	return (*max);
 }
 
-void	qwe_comparison_A(t_list **t, t_list *list)
+void	keep_A_index(t_list **list, t_list *head)
 {
-//		 НАПИСАТЬ ФУНКЦИЮ, КОТОРАЯ ЗАПИСЫВАЕТ 0 и 1
-
 	t_list	*temp;
 	int		i;
 
-	temp = *t;
-	i = (*t)->order + 1;
-	(*t)->keep_A = 1;
+	temp = head;
+	i = temp->order + 1;
 	while (temp != NULL)
 	{
 		if (temp->order == i)
 		{
-			(*t)->keep_A = 1;
+			temp->keep_A = 1;
 			i++;
 		}
 		else
-			(*t)->keep_A = 0;
+			temp->keep_A = 0;
 		temp = temp->next;
 	}
-	temp = list;
-	while (temp != *t)
+	temp = *list;
+	while (temp != head)
 	{
 		if (temp->order == i)
 		{
-			(*t)->keep_A = 1;
+			temp->keep_A = 1;
 			i++;
 		}
 		else
-			(*t)->keep_A = 0;
+			temp->keep_A = 0;
+		temp = temp->next;
+	}
+	temp->keep_A = 1;
+
+	printf("keep_A_index = ");
+	temp = *list;
+	while (temp != NULL)
+	{
+		printf("%d ", temp->keep_A);
 		temp = temp->next;
 	}
 }
+
+void	keep_A_greater(t_list **list, int i) /** проблемы с записью 0 и 1 */
+{
+	t_list	*a;
+	t_list	*b;
+
+	a = *list;
+	while (--i > 0)
+	{
+		a->keep_A = 0;
+		a = a->next;
+	}
+	b = a->next;
+	while (b != NULL)
+	{
+		if (b->nbr > a->nbr)
+		{
+			a->keep_A = 1;
+			a = b;
+		}
+		else
+			a->keep_A = 0;
+		b = b->next;
+	}
+	a->keep_A = 1;
+
+
+
+
+//	temp = i;
+//	a = *list;
+//	while (--i > 0)
+//	{
+//		a->keep_A = 0;
+//		a = a->next;
+//	}
+//	b = a->next;
+//	while (b != NULL || a != NULL)
+//	{
+//		while (b != NULL)
+//		{
+//			if (b->nbr > a->nbr)
+//			{
+//				a->keep_A = 1;
+//				break;
+//			}
+//			a->keep_A = 0;
+//			b = b->next;
+//
+//		}
+//		if (i == temp)
+//			a->keep_A = 1;
+//		if (b == NULL)
+//			break;
+//		a = b;
+//		b = b->next;
+//		i++;
+//	}
+
+
+
+	printf("keep_A_greater = ");
+	a = *list;
+	while (a != NULL)
+	{
+		printf("%d ", a->keep_A);
+		a = a->next;
+	}
+}
+

@@ -4,6 +4,7 @@ static void	check_str(int argc, char **argv)
 {
 	int		i;
 	int		j;
+	char	c;
 
 	i = 0;
 	j = -1;
@@ -19,11 +20,11 @@ static void	check_str(int argc, char **argv)
 			argv[j][i] == '+'))
 				close_program();
 			if (ft_strlen(argv[j]) > 1 && ((argv[j][i] == '+' || \
-			argv[j][i] == '-') && ((argv[j][++i] == '+' || \
-			argv[j][i] == '-'))))
+			argv[j][i] == '-') && ((argv[j][i + 1] == '+' || \
+			argv[j][i + 1] == '-'))))
 				close_program();
 			if (ft_strlen(argv[j]) > 1 && ft_isdigit_mod(argv[j][i]) && \
-			(argv[j][++i] == '+' || argv[j][i] == '-'))
+			(argv[j][i + 1] == '+' || argv[j][i + 1] == '-'))
 				close_program();
 			i++;
 		}
