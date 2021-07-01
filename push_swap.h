@@ -53,5 +53,6 @@ int		*selection(int *arr, t_size *len);
 int		comparison_A(t_list *t, t_list *list);
 void	keep_A_index(t_list **list, t_list *head);
 void	keep_A_greater(t_list **list, int i);
+void	check_keep_A(t_list **list, t_list **swap, t_size *len);
 
 #endif

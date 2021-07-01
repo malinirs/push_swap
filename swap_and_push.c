@@ -24,7 +24,7 @@ void	sa(t_list **list)
 
 	write(1, "sa\n", 3);
 	t = *list;
-	printf("\n");
+	printf("list sa: ");
 	while(t != NULL)
 	{
 		printf("%d ", t->nbr);
@@ -74,7 +74,7 @@ void	pa(t_list **list, t_list **swap, t_size *len)
 	len->size_b--;
 
 	tmp = *list;
-	printf("\nlist: ");
+	printf("list: ");
 	while(tmp != NULL)
 	{
 		printf("%d ", tmp->nbr);
@@ -100,23 +100,23 @@ void	pb(t_list **list, t_list **swap, t_size *len)
 	*list = (*list)->next;
 	a->next = b;
 	*swap = a;
-	write(1, "pb\n", 3);
+//	write(1, "pb\n", 3);
 	len->size_a--;
 	len->size_b++;
 
 
-	tmp = *list;
-	printf("\nlist: ");
-	while(tmp != NULL)
-	{
-		printf("%d ", tmp->nbr);
-		tmp = tmp->next;
-	}
-	tmp = *swap;
-	printf("\nswap: ");
-	while(tmp != NULL)
-	{
-		printf("%d ", tmp->nbr);
-		tmp = tmp->next;
-	}
+//	tmp = *list;
+//	printf("list pb: ");
+//	while(tmp != NULL)
+//	{
+//		printf("%d ", tmp->nbr);
+//		tmp = tmp->next;
+//	}
+//	tmp = *swap;
+//	printf("\nswap pb: ");
+//	while(tmp != NULL)
+//	{
+//		printf("%d ", tmp->nbr);
+//		tmp = tmp->next;
+//	}
 }

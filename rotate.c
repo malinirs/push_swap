@@ -10,14 +10,14 @@ void	ra(t_list **list)
 	tmp->next = NULL;
 
 
-	write(1, "ra\n", 3);
-	tmp = *list;
-	printf("\n");
-	while(tmp != NULL)
-	{
-		printf("%d ", tmp->nbr);
-		tmp = tmp->next;
-	}
+//	write(1, "ra\n", 3);
+//	tmp = *list;
+//	printf("list ra: ");
+//	while(tmp != NULL)
+//	{
+//		printf("%d ", tmp->nbr);
+//		tmp = tmp->next;
+//	}
 }
 
 void	rb(t_list **swap)

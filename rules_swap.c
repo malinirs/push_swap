@@ -124,6 +124,7 @@ void	rules_swap(t_list **list)
 	sorted_array(sort, &len);
 	write_order(list, sort, &len);
 	markup_mode(list, &len);
+	check_keep_A(list, &swap, &len);
 
 
 //	sa(list);
