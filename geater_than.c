@@ -127,14 +127,14 @@ void	markup_mode(t_list **list, t_size *len)
 
 	int i = 0;
 	temp = *list;
-//	if (arr[len->greater_a] > mass[len->index_a])
-//		keep_A_greater(list, len->greater_a);
-//	else
-//	{
-		while (i++ != len->index_a)
+	if (arr[len->greater_a] > mass[len->index_a])
+		keep_A_greater(list, len->greater_a);
+	else
+	{
+		while (i++ < len->index_a)
 			temp = temp->next;
 		keep_A_index(list, temp);
-//	}
+	}
 
 
 	free(arr);

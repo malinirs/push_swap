@@ -47,11 +47,10 @@ int	by_index(t_list **list, t_size *len, int *mass)
 		i++;
 	}
 	max = selection(mass, len);
-	i = -1;
+	i = 0;
 	while (mass[i] != *max)
 		i++;
-
-	return (*max);
+  	return (i);
 }
 
 void	keep_A_index(t_list **list, t_list *head)
@@ -86,7 +85,7 @@ void	keep_A_index(t_list **list, t_list *head)
 	}
 	temp->keep_A = 1;
 
-	printf("keep_A_index = ");
+	printf("\nkeep_A_index = ");
 	temp = *list;
 	while (temp != NULL)
 	{
@@ -119,40 +118,6 @@ void	keep_A_greater(t_list **list, int i) /** проблемы с записью
 		b = b->next;
 	}
 	a->keep_A = 1;
-
-
-
-
-//	temp = i;
-//	a = *list;
-//	while (--i > 0)
-//	{
-//		a->keep_A = 0;
-//		a = a->next;
-//	}
-//	b = a->next;
-//	while (b != NULL || a != NULL)
-//	{
-//		while (b != NULL)
-//		{
-//			if (b->nbr > a->nbr)
-//			{
-//				a->keep_A = 1;
-//				break;
-//			}
-//			a->keep_A = 0;
-//			b = b->next;
-//
-//		}
-//		if (i == temp)
-//			a->keep_A = 1;
-//		if (b == NULL)
-//			break;
-//		a = b;
-//		b = b->next;
-//		i++;
-//	}
-
 
 
 	printf("keep_A_greater = ");
