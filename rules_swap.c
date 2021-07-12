@@ -117,13 +117,18 @@ void	rules_swap(t_list **list)
 	t_list	*swap;
 	int		*sort;
 	t_size	len;
+	t_step	*step;
 
 	swap = NULL;
 	len = init(*list, swap);
 	sort = create_int_array(list);
 	sorted_array(sort, &len);
 	write_order(list, sort, &len);
-	markup_mode(list, &len);
+	free(sort);
+
+//	check_step(list, &len);
+
+	markup_mode(list, &len, 0);
 	check_keep_A(list, &swap, &len);
 
 
@@ -166,5 +171,4 @@ void	rules_swap(t_list **list)
 
 	free_list(list);
 	free_list(&swap);
-	free(sort);
 }

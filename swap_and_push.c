@@ -93,7 +93,7 @@ void	pb(t_list **list, t_list **swap, t_size *len)
 {
 	t_list	*a;
 	t_list	*b;
-	t_list	*tmp;
+//	t_list	*tmp;
 
 	a = *list;
 	b = *swap;

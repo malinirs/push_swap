@@ -11,6 +11,8 @@ typedef struct s_list
 	int				order; /** порядок, в котором находится это значение в уже отсортированном массиве */
 	int				keep_A; /** хранить ли элемент в стеке А? */
 	struct s_list	*next; /** ссылка на следующий лист */
+	int				step_A;
+	int 			step_B;
 }				t_list;
 
 typedef struct s_size
@@ -19,7 +21,14 @@ typedef struct s_size
 	int				size_b;
 	int				index_a;
 	int				greater_a;
+	int				step;
 }				t_size;
+
+typedef struct s_step
+{
+	int				foot;
+
+}				t_step;
 
 void	close_program(void);
 int		ft_isdigit_mod(int c);
@@ -45,14 +54,15 @@ void	rr(t_list **list, t_list **swap);
 void	rra(t_list **list);
 void	rrb(t_list **swap);
 void	rrr(t_list **list, t_list **swap);
-void	markup_mode(t_list **list, t_size *len);
+void	markup_mode(t_list **list, t_size *len, int j);
 int		comparison_Keep_A(t_list *list);
-void	write_Keep_A(t_list **list, t_list *head);
-int 	by_index(t_list **list, t_size *len, int *arr);
+int	by_index(t_list **list, t_size *len, int *mass, int j);
 int		*selection(int *arr, t_size *len);
 int		comparison_A(t_list *t, t_list *list);
 void	keep_A_index(t_list **list, t_list *head);
 void	keep_A_greater(t_list **list, int i);
 void	check_keep_A(t_list **list, t_list **swap, t_size *len);
+void	check_keep_B(t_list **list, t_list **swap, t_size *len);
+//void	check_step(t_list **list, t_size *len);
 
 #endif

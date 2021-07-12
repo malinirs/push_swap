@@ -9,7 +9,7 @@ static void	check_str(int argc, char **argv)
 	i = 0;
 	j = -1;
 	argc--;
-	while (argv[j][i] && ++j <= argc) /** ПЕРЕДЕЛАТЬ ЭТО ДЕРЬМО!!! */
+	while (argv[j][i] && ++j <= argc)
 	{
 		i = 0;
 		while (argv[j][i])

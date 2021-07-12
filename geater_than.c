@@ -37,22 +37,21 @@ int	*selection(int *arr, t_size *len)
 	int		i;
 	int		j;
 	int		max;
-	int		*head;
+	int		*temp;
 
 	j = 0;
 	i = j + 1;
 	max = arr[j];
 	while (arr[i] && i < len->size_a)
 	{
-		if (max < arr[i])
+		if (arr[i] > max)
 		{
 			max = arr[i];
 			j = i;
 		}
 		i++;
 	}
-	head = arr;
-	return (&head[j]);
+	return (&arr[j]);
 }
 
 int	comparison_Keep_A(t_list *list)
@@ -98,7 +97,7 @@ static int	greater_than(t_list **list, t_size *len, int *arr)
 	return (i);
 }
 
-void	markup_mode(t_list **list, t_size *len)
+void	markup_mode(t_list **list, t_size *len, int j)
 {
 	int		*arr;
 	int		*mass;
@@ -120,7 +119,7 @@ void	markup_mode(t_list **list, t_size *len)
 		mass = NULL;
 		clear_list(list);
 	}
-	len->index_a = by_index(list, len, mass);
+	len->index_a = by_index(list, len, mass, j);
 
 	printf("index index = %d\n", len->index_a);
 
@@ -135,8 +134,6 @@ void	markup_mode(t_list **list, t_size *len)
 			temp = temp->next;
 		keep_A_index(list, temp);
 	}
-
-
 	free(arr);
 	free(mass);
 }

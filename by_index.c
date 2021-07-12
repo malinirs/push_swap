@@ -31,7 +31,7 @@ int	comparison_A(t_list *t, t_list *list)
 	return (count);
 }
 
-int	by_index(t_list **list, t_size *len, int *mass)
+int	by_index(t_list **list, t_size *len, int *mass, int j)
 {
 	t_list	*temp;
 	int		i;
@@ -94,7 +94,7 @@ void	keep_A_index(t_list **list, t_list *head)
 	}
 }
 
-void	keep_A_greater(t_list **list, int i) /** проблемы с записью 0 и 1 */
+void	keep_A_greater(t_list **list, int i)
 {
 	t_list	*a;
 	t_list	*b;
