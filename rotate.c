@@ -11,35 +11,35 @@ void	ra(t_list **list)
 
 
 //	write(1, "ra\n", 3);
-//	tmp = *list;
-//	printf("list ra: ");
-//	while(tmp != NULL)
-//	{
-//		printf("%d ", tmp->nbr);
-//		tmp = tmp->next;
-//	}
+	printf("\nra ");
+	tmp = *list;
+	while(tmp != NULL)
+	{
+		printf("%d ", tmp->nbr);
+		tmp = tmp->next;
+	}
 }
 
 void	rb(t_list **swap)
 {
 	t_list	*b;
 
-	b = *swap;
-	printf("\n");
-	while(b != NULL)
-	{
-		printf("%d ", b->nbr);
-		b = b->next;
-	}
+//	b = *swap;
+//	printf("\n");
+//	while(b != NULL)
+//	{
+//		printf("%d ", b->nbr);
+//		b = b->next;
+//	}
 
 	b = *swap;
 	*swap = (*swap)->next;
 	ft_lstadd_back(swap, b);
 	b->next = 0x0;
 
-	write(1, "rb\n", 3);
+	printf("\nrb ");
+//	write(1, "rb\n", 3);
 	b = *swap;
-	printf("\n");
 	while(b != NULL)
 	{
 		printf("%d ", b->nbr);

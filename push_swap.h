@@ -10,9 +10,13 @@ typedef struct s_list
 	int				nbr; /** значение, которое нужно отсортировать */
 	int				order; /** порядок, в котором находится это значение в уже отсортированном массиве */
 	int				keep_A; /** хранить ли элемент в стеке А? */
-	struct s_list	*next; /** ссылка на следующий лист */
 	int				step_A;
 	int 			step_B;
+	int				rra; /** */
+	int				rrb;
+	int				ra;
+	int				rb;
+	struct s_list	*next;
 }				t_list;
 
 typedef struct s_size
@@ -56,13 +60,15 @@ void	rrb(t_list **swap);
 void	rrr(t_list **list, t_list **swap);
 void	markup_mode(t_list **list, t_size *len, int j);
 int		comparison_Keep_A(t_list *list);
-int	by_index(t_list **list, t_size *len, int *mass, int j);
+int		by_index(t_list **list, t_size *len, int *mass, int j);
 int		*selection(int *arr, t_size *len);
 int		comparison_A(t_list *t, t_list *list);
 void	keep_A_index(t_list **list, t_list *head);
 void	keep_A_greater(t_list **list, int i);
 void	check_keep_A(t_list **list, t_list **swap, t_size *len);
-void	check_keep_B(t_list **list, t_list **swap, t_size *len);
+void	check_step_A(t_list **list, t_list **swap, t_size *len);
+void	check_step_B(t_list **list, t_list **swap, t_size *len);
+void	check_rr(t_list **list, t_list **swap);
 //void	check_step(t_list **list, t_size *len);
 
 #endif
