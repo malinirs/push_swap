@@ -12,12 +12,12 @@ void	ra(t_list **list)
 
 //	write(1, "ra\n", 3);
 	printf("\nra ");
-	tmp = *list;
-	while(tmp != NULL)
-	{
-		printf("%d ", tmp->nbr);
-		tmp = tmp->next;
-	}
+//	tmp = *list;
+//	while(tmp != NULL)
+//	{
+//		printf("%d ", tmp->nbr);
+//		tmp = tmp->next;
+//	}
 }
 
 void	rb(t_list **swap)
@@ -39,12 +39,12 @@ void	rb(t_list **swap)
 
 	printf("\nrb ");
 //	write(1, "rb\n", 3);
-	b = *swap;
-	while(b != NULL)
-	{
-		printf("%d ", b->nbr);
-		b = b->next;
-	}
+//	b = *swap;
+//	while(b != NULL)
+//	{
+//		printf("%d ", b->nbr);
+//		b = b->next;
+//	}
 }
 
 void	rr(t_list **list, t_list **swap)

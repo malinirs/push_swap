@@ -10,12 +10,13 @@ typedef struct s_list
 	int				nbr; /** значение, которое нужно отсортировать */
 	int				order; /** порядок, в котором находится это значение в уже отсортированном массиве */
 	int				keep_A; /** хранить ли элемент в стеке А? */
-	int				step_A;
-	int 			step_B;
-	int				rra; /** */
-	int				rrb;
-	int				ra;
-	int				rb;
+	int				step_A; /** кол-во шагов, чтобы поставить эл-т на свое место в списке А */
+	int 			step_B; /** кол-во шагов, чтобы эл-т стал первым в списке В */
+	int				rra; /** нужно ли делать команду rra */
+	int				rrb; /** нужно ли делать команду rrb */
+	int				ra; /** нужно ли делать команду ra */
+	int				rb; /** нужно ли делать команду rb */
+	int				sum_step;
 	struct s_list	*next;
 }				t_list;
 
@@ -69,6 +70,7 @@ void	check_keep_A(t_list **list, t_list **swap, t_size *len);
 void	check_step_A(t_list **list, t_list **swap, t_size *len);
 void	check_step_B(t_list **list, t_list **swap, t_size *len);
 void	check_rr(t_list **list, t_list **swap);
+t_list	*summ_step(t_list **swap);
 //void	check_step(t_list **list, t_size *len);
 
 #endif

@@ -17,13 +17,14 @@ void	rra(t_list **list)
 	temp->next = NULL;
 
 
-	write(1, "rra\n", 4);
-	tmp = *list;
-	while(tmp != NULL)
-	{
-		printf("%d ", tmp->nbr);
-		tmp = tmp->next;
-	}
+//	write(1, "rra\n", 4);
+	printf("rra\n");
+//	tmp = *list;
+//	while(tmp != NULL)
+//	{
+//		printf("%d ", tmp->nbr);
+//		tmp = tmp->next;
+//	}
 }
 
 void	rrb(t_list **swap)
@@ -50,13 +51,14 @@ void	rrb(t_list **swap)
 		b = b->next;
 	b->next = NULL;
 
-	write(1, "rrb\n", 4);
-	b = *swap;
-	while(b != NULL)
-	{
-		printf("%d ", b->nbr);
-		b = b->next;
-	}
+	//write(1, "rrb\n", 4);
+	printf("rrb\n");
+//	b = *swap;
+//	while(b != NULL)
+//	{
+//		printf("%d ", b->nbr);
+//		b = b->next;
+//	}
 }
 
 void	rrr(t_list **list, t_list **swap)

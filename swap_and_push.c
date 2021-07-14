@@ -22,14 +22,14 @@ void	sa(t_list **list)
 //	(*list)->next = a; /** b->a, итого b->a->c */
 
 
-	write(1, "sa\n", 3);
+//	write(1, "sa\n", 3);
 	t = *list;
-	printf("list sa: ");
-	while(t != NULL)
-	{
-		printf("%d ", t->nbr);
-		t = t->next;
-	}
+	printf("sa\n");
+//	while(t != NULL)
+//	{
+//		printf("%d ", t->nbr);
+//		t = t->next;
+//	}
 }
 
 void	sb(t_list **swap)
@@ -42,14 +42,14 @@ void	sb(t_list **swap)
 	b->next = (*swap)->next;
 	(*swap)->next = b;
 
-	write(1, "sb\n", 3);
+//	write(1, "sb\n", 3);
 	t = *swap;
-	printf("\n");
-	while(t != NULL)
-	{
-		printf("%d ", t->nbr);
-		t = t->next;
-	}
+	printf("sb\n");
+//	while(t != NULL)
+//	{
+//		printf("%d ", t->nbr);
+//		t = t->next;
+//	}
 }
 
 void	ss(t_list **list, t_list **swap)
@@ -103,6 +103,7 @@ void	pb(t_list **list, t_list **swap, t_size *len)
 //	write(1, "pb\n", 3);
 	len->size_a--;
 	len->size_b++;
+	printf("pb\n");
 
 
 //	tmp = *list;
