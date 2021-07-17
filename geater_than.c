@@ -110,9 +110,6 @@ void	markup_mode(t_list **list, t_size *len, int j)
 		clear_list(list);
 	}
 	len->greater_a = greater_than(list, len, arr) + 1;
-
-	printf("greater index = %d\n", len->greater_a);
-
 	mass = malloc(sizeof(int) * len->size_a);
 	if (!mass)
 	{
@@ -120,9 +117,6 @@ void	markup_mode(t_list **list, t_size *len, int j)
 		clear_list(list);
 	}
 	len->index_a = by_index(list, len, mass, j);
-
-	printf("index index = %d\n", len->index_a);
-
 
 	int i = 0;
 	temp = *list;

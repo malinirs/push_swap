@@ -35,6 +35,30 @@ int		search_min(t_list **list)
 	return (min_i);
 }
 
+int		search_max(t_list **list)
+{
+	t_list	*a;
+	int 	max;
+	int 	max_i;
+	int		i;
+
+	i = 0;
+	a = *list;
+	max = a->nbr;
+	max_i = 0;
+	while (a)
+	{
+		if (max < a->nbr)
+		{
+			max = a->nbr;
+			max_i=i;
+		}
+		i++;
+		a = a->next;
+	}
+	return (max_i);
+}
+
 void	check_step_A(t_list **list, t_list **swap, t_size *len)
 {
 	t_list	*a;
@@ -52,20 +76,15 @@ void	check_step_A(t_list **list, t_list **swap, t_size *len)
 		{
 			if (b->nbr > a->nbr)
 				ip = i;
+			else
+				break;
 			i++;
 			a = a->next;
 		}
-		if (ip > len->size_a / 2)
+		b->rra = 0;
+		if (ip - 1 == len->size_a)
 		{
-			ip = len->size_a - ip;
-			b->rra = 1;
-		}
-		else
-			b->rra = 0;
-		b->step_A = ip;
-		if (ip < 0)
-		{
-			ip = search_min(list);
+			ip = search_max(list);
 			if (ip > len->size_a / 2)
 			{
 				ip = len->size_a - ip;
@@ -73,26 +92,40 @@ void	check_step_A(t_list **list, t_list **swap, t_size *len)
 			}
 //			else
 //				b->rra = 0;
-			b->step_A = ip;
 		}
+		else if (ip > len->size_a / 2)
+		{
+			ip = len->size_a - ip;
+			b->rra = 1;
+		}
+		else if (ip < 0)
+		{
+			ip = search_min(list);
+			if (ip > len->size_a / 2)
+			{
+				ip = len->size_a - ip;
+				b->rra = 1;
+			}
+		}
+		b->step_A = ip;
 		b = b->next;
 	}
 
 
-	printf("\nstep_A = ");
-	b = *swap;
-	while (b != NULL)
-	{
-		printf("%d ", b->step_A);
-		b = b->next;
-	}
-	printf("\nrra = ");
-	b = *swap;
-	while (b != NULL)
-	{
-		printf("%d ", b->rra);
-		b = b->next;
-	}
+//	printf("\nstep_A = ");
+//	b = *swap;
+//	while (b != NULL)
+//	{
+//		printf("%d ", b->step_A);
+//		b = b->next;
+//	}
+//	printf("\nrra = ");
+//	b = *swap;
+//	while (b != NULL)
+//	{
+//		printf("%d ", b->rra);
+//		b = b->next;
+//	}
 }
 
 void	check_step_B(t_list **list, t_list **swap, t_size *len)
@@ -123,57 +156,20 @@ void	check_step_B(t_list **list, t_list **swap, t_size *len)
 
 
 
-	printf("\nstep_B = ");
-	b = *swap;
-	while (b != NULL)
-	{
-		printf("%d ", b->step_B);
-		b = b->next;
-	}
-	printf("\nrrb = ");
-	b = *swap;
-	while (b != NULL)
-	{
-		printf("%d ", b->rrb);
-		b = b->next;
-	}
-}
-
-void	check_rr(t_list **list, t_list **swap)
-{
-	t_list	*a;
-	t_list	*b;
-
-	a = *list;
-	b = *swap;
-	while (*list && *swap)
-	{
-		if ((*swap)->step_B > 0 && (*swap)->step_A > 0 && \
-		(*swap)->rra == 0 && (*swap)->rrb == 0)
-		{
-			(*swap)->rb = 1;
-			(*list)->ra = 1;
-		}
-		*swap = (*swap)->next;
-		*list = (*list)->next;
-	}
-	*swap = b;
-	*list = a;
-
-	printf("\nra ");
-	a = *list;
-	while(a != NULL)
-	{
-		printf("%d ", a->ra);
-		a = a->next;
-	}
-	printf("\nrb ");
-	a = *swap;
-	while(a != NULL)
-	{
-		printf("%d ", a->rb);
-		a = a->next;
-	}
+//	printf("\nstep_B = ");
+//	b = *swap;
+//	while (b != NULL)
+//	{
+//		printf("%d ", b->step_B);
+//		b = b->next;
+//	}
+//	printf("\nrrb = ");
+//	b = *swap;
+//	while (b != NULL)
+//	{
+//		printf("%d ", b->rrb);
+//		b = b->next;
+//	}
 }
 
 t_list	*summ_step(t_list **swap)
@@ -188,6 +184,7 @@ t_list	*summ_step(t_list **swap)
 		b = b->next;
 	}
 	b = *swap;
+	min = b;
 	while (b->next)
 	{
 		if (b->sum_step < b->next->sum_step)
@@ -199,10 +196,16 @@ t_list	*summ_step(t_list **swap)
 
 void	realize_move(t_list **list, t_list **swap, t_list *min, t_size *len)
 {
-//	if ((*list)->rra == 1 && (*swap)->rrb == 1)
-//		rrr(list, swap);
-//	else if ((*list)->ra == 1 && (*swap)->rb == 1)
-//		rr(list, swap);
+	if ((*list)->rra == 0 && (*swap)->rrb == 0)
+	{
+		while (min->step_B-- > 0 && min->step_A-- > 0)
+			rr(list, swap);
+	}
+	else if ((*list)->rra == 1 && (*swap)->rrb == 1)
+	{
+		while (min->step_B-- > 0 && min->step_A-- > 0)
+			rrr(list, swap);
+	}
 	if ((*swap)->rra == 0)
 	{
 		while (min->step_A-- > 0)
@@ -213,7 +216,7 @@ void	realize_move(t_list **list, t_list **swap, t_list *min, t_size *len)
 		while (min->step_A-- > 0)
 			rra(list);
 	}
-	if ((*swap)->rb == 1)
+	if ((*swap)->rrb == 0)
 	{
 		while (min->step_B-- > 0)
 			rb(swap);
@@ -224,6 +227,28 @@ void	realize_move(t_list **list, t_list **swap, t_list *min, t_size *len)
 			rrb(swap);
 	}
 	pa(list, swap, len);
+}
+
+void	transition_min_nbr(t_list **list, t_size *len)
+{
+	t_list	*a;
+	int		i;
+	int		min;
+
+	a = *list;
+	i = 0;
+	min = search_min(list);
+	while (i++ < min)
+		a = a->next;
+	if (--i > len->size_a / 2)
+	{
+		i = len->size_a - i;
+		while (i-- > 0)
+			rra(list);
+	}
+	else
+		while (i-- > 0)
+			ra(list);
 }
 
 void	check_keep_A(t_list **list, t_list **swap, t_size *len)
@@ -237,47 +262,30 @@ void	check_keep_A(t_list **list, t_list **swap, t_size *len)
 		else
 			ra(list);
 	}
-
-//	t_list *tmp = *list;
-//	printf("\nlist: ");
-//	while(tmp != NULL)
-//	{
-//		printf("%d ", tmp->nbr);
-//		tmp = tmp->next;
-//	}
-//	tmp = *swap;
-//	printf("\nswap: ");
-//	while(tmp != NULL)
-//	{
-//		printf("%d ", tmp->nbr);
-//		tmp = tmp->next;
-//	}
-
 	while (*swap)
 	{
 		check_step_B(list, swap, len);
 		check_step_A(list, swap, len);
-//		check_rr(list, swap);
 		min = summ_step(swap);
 		realize_move(list, swap, min, len);
-//		*swap = (*swap)->next;
 	}
-	
+	transition_min_nbr(list, len);
 
-	t_list *tmp;
-	tmp = *list;
+
+	t_list *a;
+	a = *list;
 	printf("\nlist: ");
-	while(tmp != NULL)
+	while(a != NULL)
 	{
-		printf("%d ", tmp->nbr);
-		tmp = tmp->next;
+		printf("%d ", a->nbr);
+		a = a->next;
 	}
-	tmp = *swap;
+	a = *swap;
 	printf("\nswap: ");
-	while(tmp != NULL)
+	while(a != NULL)
 	{
-		printf("%d ", tmp->nbr);
-		tmp = tmp->next;
+		printf("%d ", a->nbr);
+		a = a->next;
 	}
 }
 

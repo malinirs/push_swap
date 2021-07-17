@@ -4,7 +4,6 @@ static void	check_str(int argc, char **argv)
 {
 	int		i;
 	int		j;
-	char	c;
 
 	i = 0;
 	j = -1;
@@ -76,8 +75,6 @@ static void	write_elem_space(t_list **list, char *str)
 
 void 	write_list(char **argv, t_list **list)
 {
-//	t_list	*tmp;
-
 	while (*argv)
 	{
 		if (!ft_strchr_mod(*argv, ' ')) /** нет ' ' */
@@ -86,14 +83,6 @@ void 	write_list(char **argv, t_list **list)
 			write_elem_space(list, *argv);
 		argv++;
 	}
-
-//	tmp = *list;
-//	while(tmp != NULL)
-//	{
-//		printf("%d ", tmp->nbr);
-//		tmp = tmp->next;
-//	}
-//	printf("\n\n");
 }
 
 int 	check_check_duplicat(t_list *list, int nbr, int coun)

@@ -19,15 +19,6 @@ static void	sorted_array(int *arr, t_size *len)
 		arr[i + 1] = temp;
 		j++;
 	}
-
-
-//	printf("\nsort =");
-//	j = 0;
-//	while (j < 5)
-//	{
-//		printf("% d", arr[j]);
-//		j++;
-//	}
 }
 
 static int	*create_int_array(t_list **list)
@@ -42,32 +33,6 @@ static int	*create_int_array(t_list **list)
 	sort = malloc(sizeof(int) * n);
 	if (!sort)
 		clear_list(list);
-	i = 0;
-
-
-//	printf("\nwrite sort =");
-
-
-	while (t != NULL)
-	{
-		sort[i] = t->nbr;
-		t = t->next;
-//		printf("% d", sort[i]);
-		i++;
-	}
-
-
-
-//
-//	printf("\nbefor sort1 =");
-//	i = 0;
-//	while (i < n)
-//	{
-//		printf("% d", sort[i]);
-//		i++;
-//	}
-
-
 	return (sort);
 }
 
@@ -91,14 +56,6 @@ static void	write_order(t_list **list, int *sort, t_size *len)
 		}
 		temp = temp->next;
 	}
-
-//	temp = *list;
-//	while (temp != NULL)
-//	{
-//		printf("%d ", temp->order);
-//		temp = temp->next;
-//	}
-
 }
 
 static t_size	init(t_list *list, t_list *swap)
@@ -117,7 +74,6 @@ void	rules_swap(t_list **list)
 	t_list	*swap;
 	int		*sort;
 	t_size	len;
-	t_step	*step;
 
 	swap = NULL;
 	len = init(*list, swap);
@@ -125,50 +81,7 @@ void	rules_swap(t_list **list)
 	sorted_array(sort, &len);
 	write_order(list, sort, &len);
 	free(sort);
-
-//	check_step(list, &len);
-
 	markup_mode(list, &len, 0);
 	check_keep_A(list, &swap, &len);
-
-
-//	sa(list);
-//	pb(list, &swap);
-//	pb(list, &swap);
-//	pb(list, &swap);
-//	sb(&swap);
-//	ss(list, &swap);
-//	pa(list, &swap, &len);
-//	pb(list, &swap, &len);
-//	ra(list);
-//	rb(&swap);
-//	rr(list, &swap);
-//	rra(list);
-//	rrb(&swap);
-//	rrr(list, &swap);
-//	tmp = swap;
-//	while(tmp != NULL)
-//	{
-//		printf("%d ", tmp->nbr);
-//		tmp = tmp->next;
-//	}
-
-//	printf("\nlist = ");
-//	t_list *temp = *list;
-//	while (temp != NULL)
-//	{
-//		printf("% d", temp->nbr);
-//		temp = temp->next;
-//	}
-//
-//	i = 0;
-//	printf("\nsort =");
-//	while (sort[i] && i < 5)
-//	{
-//		printf("% d", sort[i]);
-//		i++;
-//	}
-
 	free_list(list);
-	free_list(&swap);
 }
