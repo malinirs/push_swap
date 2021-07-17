@@ -11,7 +11,7 @@ void	ra(t_list **list)
 
 
 //	write(1, "ra\n", 3);
-	printf("\nra ");
+	printf("ra");
 //	tmp = *list;
 //	while(tmp != NULL)
 //	{

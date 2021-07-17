@@ -60,9 +60,21 @@ void	check_step_A(t_list **list, t_list **swap, t_size *len)
 			ip = len->size_a - ip;
 			b->rra = 1;
 		}
+		else
+			b->rra = 0;
 		b->step_A = ip;
 		if (ip < 0)
-			b->step_A = search_min(list);
+		{
+			ip = search_min(list);
+			if (ip > len->size_a / 2)
+			{
+				ip = len->size_a - ip;
+				b->rra = 1;
+			}
+//			else
+//				b->rra = 0;
+			b->step_A = ip;
+		}
 		b = b->next;
 	}
 
@@ -191,7 +203,7 @@ void	realize_move(t_list **list, t_list **swap, t_list *min, t_size *len)
 //		rrr(list, swap);
 //	else if ((*list)->ra == 1 && (*swap)->rb == 1)
 //		rr(list, swap);
-	if ((*swap)->ra == 1)
+	if ((*swap)->rra == 0)
 	{
 		while (min->step_A-- > 0)
 			ra(list);
@@ -250,7 +262,7 @@ void	check_keep_A(t_list **list, t_list **swap, t_size *len)
 		realize_move(list, swap, min, len);
 //		*swap = (*swap)->next;
 	}
-
+	
 
 	t_list *tmp;
 	tmp = *list;

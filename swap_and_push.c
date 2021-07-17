@@ -70,8 +70,8 @@ void	pa(t_list **list, t_list **swap, t_size *len)
 	b->next = a;
 	*list = b;
 	write(1, "pa\n", 3);
-	len->size_a++;
-	len->size_b--;
+	len->size_a = len->size_a + 1;
+	len->size_b = len->size_b - 1;
 
 	tmp = *list;
 	printf("list: ");
@@ -101,8 +101,8 @@ void	pb(t_list **list, t_list **swap, t_size *len)
 	a->next = b;
 	*swap = a;
 //	write(1, "pb\n", 3);
-	len->size_a--;
-	len->size_b++;
+	len->size_a = len->size_a - 1;
+	len->size_b = len->size_b + 1;
 	printf("pb\n");
 
 
