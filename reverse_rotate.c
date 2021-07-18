@@ -3,7 +3,7 @@
 void	rra(t_list **list)
 {
 	t_list	*temp;
-	t_list	*tmp;
+//	t_list	*tmp;
 	int		count;
 
 	temp = *list;
@@ -15,7 +15,8 @@ void	rra(t_list **list)
 	while (temp != NULL && 0 < count--)
 		temp = temp->next;
 	temp->next = NULL;
-
+/**  писать выполнение команды во время вызова, а не в самой функции, чтобы
+ * при выполнении rrr напечатать только rrr, а не rra и rrb */
 
 //	write(1, "rra\n", 4);
 	printf("rra\n");

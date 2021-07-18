@@ -25,7 +25,7 @@ static int	*create_int_array(t_list **list)
 {
 	t_list	*t;
 	int		*sort;
-	int		i;
+//	int		i;
 	int		n;
 
 	t = *list;
@@ -81,7 +81,7 @@ void	rules_swap(t_list **list)
 	sorted_array(sort, &len);
 	write_order(list, sort, &len);
 	free(sort);
-	markup_mode(list, &len, 0);
+	markup_mode(list, &len);
 	check_keep_A(list, &swap, &len);
 	free_list(list);
 }

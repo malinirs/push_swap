@@ -37,7 +37,7 @@ int	*selection(int *arr, t_size *len)
 	int		i;
 	int		j;
 	int		max;
-	int		*temp;
+//	int		*temp;
 
 	j = 0;
 	i = j + 1;
@@ -97,7 +97,7 @@ static int	greater_than(t_list **list, t_size *len, int *arr)
 	return (i);
 }
 
-void	markup_mode(t_list **list, t_size *len, int j)
+void	markup_mode(t_list **list, t_size *len)
 {
 	int		*arr;
 	int		*mass;
@@ -116,7 +116,7 @@ void	markup_mode(t_list **list, t_size *len, int j)
 		mass = NULL;
 		clear_list(list);
 	}
-	len->index_a = by_index(list, len, mass, j);
+	len->index_a = by_index(list, len, mass);
 
 	int i = 0;
 	temp = *list;

@@ -24,7 +24,7 @@ $(NAME)	: $(OBJS)
 #	${MAKE} -C ./libft
 	ar rc $(NAME) $(OBJS) $(LIBFT)
 
-%.o : %.c libft.h
+%.o : %.c
 	gcc $(CFLAGS) -c $< -o $@
 
 clean   :
