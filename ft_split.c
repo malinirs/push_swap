@@ -28,7 +28,7 @@ temp)
 	str[j] = malloc(sizeof(char) * (i - temp + 1));
 	if (!*str)
 	{
-		while (j >= 0)
+		while (j > 0)
 		{
 			free(str[j]);
 			j--;
