@@ -331,20 +331,20 @@ void	check_keep_A(t_list **list, t_list **swap, t_size *len)
 	transition_min_nbr(list, len);
 
 
-//	a = *list;
-//	printf("\nlist: ");
-//	while(a != NULL)
-//	{
-//		printf("%d ", a->nbr);
-//		a = a->next;
-//	}
-//	a = *swap;
-//	printf("\nswap: ");
-//	while(a != NULL)
-//	{
-//		printf("%d ", a->nbr);
-//		a = a->next;
-//	}
+	t_list *a = *list;
+	printf("\nlist: ");
+	while(a != NULL)
+	{
+		printf("%d ", a->nbr);
+		a = a->next;
+	}
+	a = *swap;
+	printf("\nswap: ");
+	while(a != NULL)
+	{
+		printf("%d ", a->nbr);
+		a = a->next;
+	}
 }
 
 

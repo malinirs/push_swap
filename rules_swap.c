@@ -7,7 +7,7 @@ static void	sorted_array(int *arr, t_size *len)
 	int		temp;
 
 	j = 1;
-	while (j < len->size_a)
+	while (j <= len->size_a)
 	{
 		temp = arr[j];
 		i = j - 1;
@@ -19,20 +19,38 @@ static void	sorted_array(int *arr, t_size *len)
 		arr[i + 1] = temp;
 		j++;
 	}
+
+
+
+//	i = 0;
+//	printf("\narr[i] = ");
+//	while (len->size_a > i++)
+//		printf(" %d", arr[i]);
 }
 
 static int	*create_int_array(t_list **list)
 {
 	t_list	*t;
 	int		*sort;
-//	int		i;
+	int		i;
 	int		n;
 
+	i = 0;
 	t = *list;
 	n = ft_lstsize(t);
 	sort = malloc(sizeof(int) * n);
 	if (!sort)
 		clear_list(list);
+
+//	printf("\nsort[i] = ");
+
+	while (n > i++)
+	{
+		sort[i] = t->nbr;
+		t = t->next;
+
+//		printf(" %d", sort[i]);
+	}
 	return (sort);
 }
 
@@ -45,7 +63,7 @@ static void	write_order(t_list **list, int *sort, t_size *len)
 	while (temp != NULL)
 	{
 		i = 0;
-		while (i < len->size_a)
+		while (i <= len->size_a)
 		{
 			if (temp->nbr == sort[i])
 			{
@@ -56,6 +74,14 @@ static void	write_order(t_list **list, int *sort, t_size *len)
 		}
 		temp = temp->next;
 	}
+
+//	temp = *list;
+//	printf("\n*list->order = ");
+//	while (temp)
+//	{
+//		printf(" %d", temp->order);
+//		temp = temp->next;
+//	}
 }
 
 static t_size	init(t_list *list, t_list *swap)
