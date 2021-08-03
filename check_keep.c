@@ -207,14 +207,14 @@ t_list	*summ_step(t_list **swap)
 		b->sum_step = b->step_A + b->step_B;
 		b = b->next;
 	}
-//	b = *swap;
-//	min = b;
-//	while (b->next)
-//	{
-//		if (b->sum_step < b->next->sum_step)
-//			min = b;
-//		b = b->next;
-//	}
+	b = *swap;
+	min = b;
+	while (b->next)
+	{
+		if (b->sum_step < b->next->sum_step)
+			min = b;
+		b = b->next;
+	}
   	return (min);
 }
 

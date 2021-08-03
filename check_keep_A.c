@@ -15,8 +15,6 @@ void	check_keep_A(t_list **list, t_list **swap, t_size *len)
 {
 	while (check_zero(*list))
 	{
-//		if ()
-//			sa(list);
 		if ((*list)->keep_A == 0)
 			pb(list, swap, len);
 		ra(list);

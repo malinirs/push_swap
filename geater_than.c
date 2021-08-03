@@ -37,7 +37,6 @@ int	*selection(int *arr, t_size *len)
 	int		i;
 	int		j;
 	int		max;
-//	int		*temp;
 
 	j = 0;
 	i = j + 1;
@@ -86,6 +85,9 @@ static int	greater_than(t_list **list, t_size *len, int *arr)
 	while (temp != NULL)
 	{
 		arr[i] = comparison_Keep_A(temp) + 1;
+
+//		printf("arr[%d] = %d\n", i, arr[i]);
+
 		temp = temp->next;
 		i++;
 	}
@@ -120,6 +122,9 @@ void	markup_mode(t_list **list, t_size *len)
 
 	int i = 0;
 	temp = *list;
+
+//	printf("arr = %d,  mass = %d", arr[len->greater_a], mass[len->index_a]);
+
 	if (arr[len->greater_a] > mass[len->index_a])
 		keep_A_greater(list, len->greater_a);
 	else
