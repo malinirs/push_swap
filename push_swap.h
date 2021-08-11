@@ -24,8 +24,12 @@ typedef struct s_size
 {
 	int				size_a;
 	int				size_b;
-	int				index_a;
-	int				greater_a;
+	int				i_index;
+	int				i_greater;
+
+	int				*index;
+	int				*greater;
+
 	int				step;
 }				t_size;
 
@@ -72,5 +76,6 @@ void	check_step_B(t_list **swap, t_size *len);
 void	check_rr(t_list **list, t_list **swap);
 t_list	*summ_step(t_list **swap);
 //void	check_step(t_list **list, t_size *len);
+
 
 #endif

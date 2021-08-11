@@ -90,8 +90,8 @@ static t_size	init(t_list *list, t_list *swap)
 
 	len.size_a = ft_lstsize(list);
 	len.size_b = ft_lstsize(swap);
-	len.index_a = 0;
-	len.greater_a = 0;
+	len.i_index = 0;
+	len.i_greater = 0;
 	return (len);
 }
 

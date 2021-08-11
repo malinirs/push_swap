@@ -122,22 +122,31 @@ void	check_step_A(t_list **list, t_list **swap, t_size *len)
 	int		position;
 
 	b = *swap;
-	b->ra = 0;
-	b->rra = 0;
-	position = search_position(*list, *swap);
-	if (position == len->size_a)
-		position = search_min(*list);
-	if (position > 0 && position <= len->size_a / 2)
-		b->ra = 1;
-	else if (position > len->size_a / 2)
+
+	while (b)
 	{
-		position = len->size_a - position;
-		b->rra = 1;
+		b->ra = 0;
+		b->rra = 0;
+		position = search_position(*list, *swap);
+		if (position == len->size_a)
+			position = search_min(*list);
+		if (position > 0 && position <= len->size_a / 2)
+			b->ra = 1;
+		else if (position > len->size_a / 2)
+		{
+			position = len->size_a - position;
+			b->rra = 1;
+		}
+		b->step_A = position;
+		b = b->next;
 	}
-	b->step_A = position;
-//	printf("\nb->step_A = %d", b->step_A);
-//	printf("\nb->nbr = %d", b->nbr);
-}
+
+
+
+
+//	printf("\nb->step_A = %d for ", b->step_A);
+//	printf("b->nbr = %d\n", b->nbr);
+
 
 
 //	printf("\nstep_A = ");
@@ -154,7 +163,7 @@ void	check_step_A(t_list **list, t_list **swap, t_size *len)
 //		printf("%d ", b->rra);
 //		b = b->next;
 //	}
-//}
+}
 
 void	check_step_B(t_list **swap, t_size *len)
 {
@@ -331,20 +340,20 @@ void	check_keep_A(t_list **list, t_list **swap, t_size *len)
 	transition_min_nbr(list, len);
 
 
-	t_list *a = *list;
-	printf("\nlist: ");
-	while(a != NULL)
-	{
-		printf("%d ", a->nbr);
-		a = a->next;
-	}
-	a = *swap;
-	printf("\nswap: ");
-	while(a != NULL)
-	{
-		printf("%d ", a->nbr);
-		a = a->next;
-	}
+//	a = *list;
+//	printf("\nlist: ");
+//	while(a != NULL)
+//	{
+//		printf("%d ", a->nbr);
+//		a = a->next;
+//	}
+//	a = *swap;
+//	printf("\nswap: ");
+//	while(a != NULL)
+//	{
+//		printf("%d ", a->nbr);
+//		a = a->next;
+//	}
 }
 
 

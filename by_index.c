@@ -35,28 +35,29 @@ int	by_index(t_list **list, t_size *len, int *mass)
 {
 	t_list	*temp;
 	int		i;
-	int		*max;
+	//	int		*max;
 
 
 	temp = *list;
 	i = 0;
 
-//	printf("\n mass[i] =");
+	//	printf("\n mass[i] =");
 	while (temp != NULL)
 	{
 		mass[i] = comparison_A(temp, *list) + 1;
 
-//		printf(" %d", mass[i]);
+		//		printf(" %d", mass[i]);
 
 		temp = temp->next;
 		i++;
 	}
-	max = selection(mass, len);
+	len->index = selection(mass, len);
 	i = 0;
-	while (mass[i] != *max)
+	while (mass[i] != len->index[0])
 		i++;
-  	return (i);
+	return (i);
 }
+
 
 void	keep_A_index(t_list **list, t_list *head)
 {
@@ -90,13 +91,13 @@ void	keep_A_index(t_list **list, t_list *head)
 	}
 	temp->keep_A = 1;
 
-	printf("\nkeep_A_index = ");
-	temp = *list;
-	while (temp != NULL)
-	{
-		printf("%d ", temp->keep_A);
-		temp = temp->next;
-	}
+//	printf("\nkeep_A_index = ");
+//	temp = *list;
+//	while (temp != NULL)
+//	{
+//		printf("%d ", temp->keep_A);
+//		temp = temp->next;
+//	}
 }
 
 void	keep_A_greater(t_list **list, int i)
@@ -105,10 +106,11 @@ void	keep_A_greater(t_list **list, int i)
 	t_list	*b;
 
 	a = *list;
-	while (--i > 0)
+	while (i > 0)
 	{
 		a->keep_A = 0;
 		a = a->next;
+		i--;
 	}
 	b = a->next;
 	while (b != NULL)
@@ -125,12 +127,11 @@ void	keep_A_greater(t_list **list, int i)
 	a->keep_A = 1;
 
 
-	printf("keep_A_greater = ");
-	a = *list;
-	while (a != NULL)
-	{
-		printf("%d ", a->keep_A);
-		a = a->next;
-	}
+//	printf("keep_A_greater = ");
+//	a = *list;
+//	while (a != NULL)
+//	{
+//		printf("%d ", a->keep_A);
+//		a = a->next;
+//	}
 }
-

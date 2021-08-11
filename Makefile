@@ -1,4 +1,4 @@
-NAME = push_swap.a
+NAME = push_swap
 
 SRCS =	push_swap.c \
 		utils.c \

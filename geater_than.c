@@ -78,25 +78,28 @@ static int	greater_than(t_list **list, t_size *len, int *arr)
 {
 	t_list	*temp;
 	int		i;
-	int		*max;
+//	int		*max;
 
 	temp = *list;
 	i = 0;
+
+//	printf("\n arr[i] =");
 	while (temp != NULL)
 	{
 		arr[i] = comparison_Keep_A(temp) + 1;
 
-//		printf("arr[%d] = %d\n", i, arr[i]);
+//		printf(" %d", arr[i]);
 
 		temp = temp->next;
 		i++;
 	}
 	arr[--i] = 1;
-	max = selection(arr, len);
+	len->greater = selection(arr, len);
 	i = 0;
-	while (arr[i] != *max)
+	while (arr[i] != len->greater[0])
 		i++;
 	return (i);
+//	return(max_greater);
 }
 
 void	markup_mode(t_list **list, t_size *len)
@@ -111,25 +114,27 @@ void	markup_mode(t_list **list, t_size *len)
 		arr = NULL;
 		clear_list(list);
 	}
-	len->greater_a = greater_than(list, len, arr) + 1;
+	len->i_greater = greater_than(list, len, arr);
 	mass = malloc(sizeof(int) * len->size_a);
 	if (!mass)
 	{
 		mass = NULL;
 		clear_list(list);
 	}
-	len->index_a = by_index(list, len, mass);
+	len->i_index = by_index(list, len, mass);
 
 	int i = 0;
 	temp = *list;
 
 //	printf("arr = %d,  mass = %d", arr[len->greater_a], mass[len->index_a]);
 
-	if (arr[len->greater_a] > mass[len->index_a])
-		keep_A_greater(list, len->greater_a);
+
+
+	if (arr[len->i_greater] > mass[len->i_index])
+		keep_A_greater(list, len->i_greater);
 	else
 	{
-		while (i++ < len->index_a)
+		while (i++ < len->i_index)
 			temp = temp->next;
 		keep_A_index(list, temp);
 	}
