@@ -106,7 +106,7 @@ void	rules_swap(t_list **list)
 	sort = create_int_array(list);
 	sorted_array(sort, &len);
 	write_order(list, sort, &len);
-	free(sort);
+//	free(sort);
 	markup_mode(list, &len);
 	check_keep_A(list, &swap, &len);
 	free_list(list);

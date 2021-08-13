@@ -64,7 +64,7 @@ void	rra(t_list **list);
 void	rrb(t_list **swap);
 void	rrr(t_list **list, t_list **swap);
 void	markup_mode(t_list **list, t_size *len);
-int		comparison_Keep_A(t_list *list);
+int	comparison_Keep_A(t_list *t, t_list *list);
 int	by_index(t_list **list, t_size *len, int *mass);
 int		*selection(int *arr, t_size *len);
 int		comparison_A(t_list *t, t_list *list);

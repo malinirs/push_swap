@@ -57,7 +57,7 @@ static void	write_elem_space(t_list **list, char *str)
 	while (*q)
 	{
 		number = ft_atoi_mod(*q);
-		if (number >= 2147483647|| number <= -2147483648)
+		if (number >= 2147483647 || number <= -2147483648)
 			clear_list(list);
 		tmp = ft_lstnew(number);
 		if (!tmp)
@@ -67,10 +67,10 @@ static void	write_elem_space(t_list **list, char *str)
 	}
 	while (ptr[j])
 	{
-		free(ptr[j]);
+		//free(ptr[j]);
 		j++;
 	}
-	free(ptr);
+	//free(ptr);
 }
 
 void 	write_list(char **argv, t_list **list)

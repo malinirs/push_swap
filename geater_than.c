@@ -53,7 +53,7 @@ int	*selection(int *arr, t_size *len)
 	return (&arr[j]);
 }
 
-int	comparison_Keep_A(t_list *list)
+int	comparison_Keep_A(t_list *t, t_list *list)
 {
 	int		count;
 	t_list	*a;
@@ -71,6 +71,16 @@ int	comparison_Keep_A(t_list *list)
 		}
 		b = b->next;
 	}
+//	b = list;
+//	while (b != t)
+//	{
+//		if (b->nbr > a->nbr)
+//		{
+//			count++;
+//			a = b;
+//		}
+//		b = b->next;
+//	}
 	return (count);
 }
 
@@ -78,7 +88,7 @@ static int	greater_than(t_list **list, t_size *len, int *arr)
 {
 	t_list	*temp;
 	int		i;
-//	int		*max;
+
 
 	temp = *list;
 	i = 0;
@@ -86,7 +96,7 @@ static int	greater_than(t_list **list, t_size *len, int *arr)
 //	printf("\n arr[i] =");
 	while (temp != NULL)
 	{
-		arr[i] = comparison_Keep_A(temp) + 1;
+		arr[i] = comparison_Keep_A(temp, *list) + 1;
 
 //		printf(" %d", arr[i]);
 
@@ -99,7 +109,6 @@ static int	greater_than(t_list **list, t_size *len, int *arr)
 	while (arr[i] != len->greater[0])
 		i++;
 	return (i);
-//	return(max_greater);
 }
 
 void	markup_mode(t_list **list, t_size *len)
