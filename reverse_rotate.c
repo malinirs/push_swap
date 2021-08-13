@@ -34,12 +34,12 @@ void	rrb(t_list **swap)
 	int		count;
 	int		i;
 
-	b = *swap;
-	while(b != NULL)
-	{
-		printf("%d ", b->nbr);
-		b = b->next;
-	}
+//	b = *swap;
+//	while(b != NULL)
+//	{
+//		printf("%d ", b->nbr);
+//		b = b->next;
+//	}
 
 	b = *swap;
 	i = -1;

@@ -31,3 +31,27 @@ void	rr(t_list **list, t_list **swap)
 	ra(list);
 	rb(swap);
 }
+
+int	search_min_step(t_list **swap)
+{
+	t_list	*b;
+	int 	min;
+	int 	min_i;
+	int		i;
+
+	i = 0;
+	b = *swap;
+	min = b->sum_step;
+	min_i = 0;
+	while (b)
+	{
+		if (min > b->sum_step)
+		{
+			min = b->sum_step;
+			min_i=i;
+		}
+		i++;
+		b = b->next;
+	}
+	return (min_i);
+}

@@ -74,8 +74,9 @@ void	check_keep_A(t_list **list, t_list **swap, t_size *len);
 void	check_step_A(t_list **list, t_list **swap, t_size *len);
 void	check_step_B(t_list **swap, t_size *len);
 void	check_rr(t_list **list, t_list **swap);
-t_list	*summ_step(t_list **swap);
+t_list	*summ_step(t_list **list, t_list **swap, t_size *len);
 //void	check_step(t_list **list, t_size *len);
+int	search_min_step(t_list **swap);
 
 
 #endif
