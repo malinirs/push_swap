@@ -17,6 +17,8 @@ typedef struct s_list
 	int				ra; /** нужно ли делать команду ra */
 	int				rb; /** нужно ли делать команду rb */
 	int				sum_step;
+	int				ind_greater;
+
 	struct s_list	*next;
 }				t_list;
 
@@ -30,14 +32,13 @@ typedef struct s_size
 	int				*index;
 	int				*greater;
 
+	int				count;
+	int				i;
+	int		value;
+	int				i_2;
+
 	int				step;
 }				t_size;
-
-typedef struct s_step
-{
-	int				foot;
-
-}				t_step;
 
 void	close_program(void);
 int		ft_isdigit_mod(int c);
@@ -64,12 +65,12 @@ void	rra(t_list **list);
 void	rrb(t_list **swap);
 void	rrr(t_list **list, t_list **swap);
 void	markup_mode(t_list **list, t_size *len);
-int	comparison_Keep_A(t_list *t, t_list *list);
+void	comparison_Keep_A(t_list *list, t_size *len);
 int	by_index(t_list **list, t_size *len, int *mass);
 int		*selection(int *arr, t_size *len);
 int		comparison_A(t_list *t, t_list *list);
 void	keep_A_index(t_list **list, t_list *head);
-void	keep_A_greater(t_list **list, int i);
+void	keep_A_greater(t_list **list, t_size *len);
 void	check_keep_A(t_list **list, t_list **swap, t_size *len);
 void	check_step_A(t_list **list, t_list **swap, t_size *len);
 void	check_step_B(t_list **swap, t_size *len);

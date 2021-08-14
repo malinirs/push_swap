@@ -53,26 +53,16 @@ int	*selection(int *arr, t_size *len)
 	return (&arr[j]);
 }
 
-int	comparison_Keep_A(t_list *t, t_list *list)
+void	comparison_Keep_A(t_list *list, t_size *len)
 {
-	int		count;
-	t_list	*a;
-	t_list	*b;
-
-	a = list;
-	b = a->next;
-	count = 0;
-	while (b != NULL)
-	{
-		if (b->nbr > a->nbr)
-		{
-			count++;
-			a = b;
-		}
-		b = b->next;
-	}
-//	b = list;
-//	while (b != t)
+//	int		count;
+//	t_list	*a;
+//	t_list	*b;
+//
+//	a = list;
+//	b = a->next;
+//	count = 0;
+//	while (b != NULL)
 //	{
 //		if (b->nbr > a->nbr)
 //		{
@@ -81,7 +71,73 @@ int	comparison_Keep_A(t_list *t, t_list *list)
 //		}
 //		b = b->next;
 //	}
-	return (count);
+//	return (count);
+
+
+
+	t_list	*a;
+	t_list	*b;
+
+	len->i_2 = 0;
+	a = list;
+	while (a)
+	{
+		len->count = 0;
+		len->i = 0;
+		b = a;
+		len->value = b->nbr;
+		while (len->size_a > len->i)
+		{
+			if (b->nbr > len->value)
+			{
+				len->value = b->nbr;
+				len->count++;
+			}
+			b = b->next;
+			if (b == 0x0)
+				b = list;
+			len->i++;
+		}
+		a->ind_greater = len->count;
+
+//		printf(" %d", arr[len->i_2] );
+
+		a = a->next;
+	}
+
+
+
+
+//	int		i;
+//
+//	i = 0;
+//	count = 0;
+//	a = t;
+//	b = t->next;
+//	while (b && i < len->size_a)
+//	{
+//		if (b->nbr > t->nbr)
+//		{
+//			count++;
+//			t = b;
+//		}
+//		b = b->next;
+//		i++;
+//	}
+//	t = list;
+//	b = list->next;
+//	while ((b && t != a) && i < len->size_a)//b && b != a && t != a)
+//	{
+//		if (b->nbr > t->nbr)
+//		{
+//			count++;
+//			t = b;
+//		}
+//		b = b->next;
+//		i++;
+//	}
+
+//	return (count);
 }
 
 static int	greater_than(t_list **list, t_size *len, int *arr)
@@ -90,25 +146,51 @@ static int	greater_than(t_list **list, t_size *len, int *arr)
 	int		i;
 
 
-	temp = *list;
+	comparison_Keep_A(*list, len);
+
+//	printf("arr[i] = ");
+
 	i = 0;
-
-//	printf("\n arr[i] =");
-	while (temp != NULL)
+	temp = *list;
+	while (temp)
 	{
-		arr[i] = comparison_Keep_A(temp, *list) + 1;
-
+		arr[i] = temp->ind_greater + 1;
 //		printf(" %d", arr[i]);
-
 		temp = temp->next;
 		i++;
 	}
-	arr[--i] = 1;
+
 	len->greater = selection(arr, len);
 	i = 0;
 	while (arr[i] != len->greater[0])
 		i++;
 	return (i);
+
+
+
+//	t_list	*temp;
+//	int		i;
+//
+//
+//	temp = *list;
+//	i = 0;
+//
+//	printf("\n arr[i] =");
+//	while (temp != NULL)
+//	{
+//		arr[i] = comparison_Keep_A(*list, len) + 1;
+//
+//		printf(" %d", arr[i]);
+//
+//		temp = temp->next;
+//		i++;
+//	}
+//	arr[--i] = 1;
+//	len->greater = selection(arr, len);
+//	i = 0;
+//	while (arr[i] != len->greater[0])
+//		i++;
+//	return (i);
 }
 
 void	markup_mode(t_list **list, t_size *len)
@@ -140,7 +222,7 @@ void	markup_mode(t_list **list, t_size *len)
 
 
 	if (arr[len->i_greater] > mass[len->i_index])
-		keep_A_greater(list, len->i_greater);
+		keep_A_greater(list, len);
 	else
 	{
 		while (i++ < len->i_index)

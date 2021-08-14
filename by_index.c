@@ -100,20 +100,31 @@ void	keep_A_index(t_list **list, t_list *head)
 //	}
 }
 
-void	keep_A_greater(t_list **list, int i)
+void	keep_A_greater(t_list **list, t_size *len)
 {
 	t_list	*a;
 	t_list	*b;
 
-	a = *list;
-	while (i > 0)
-	{
-		a->keep_A = 0;
-		a = a->next;
-		i--;
-	}
-	b = a->next;
+	b = *list;
+	len->count = 0;
+	while (len->count++ < len->i_greater)
+		b = b->next;
+	a = b;
+	b = b->next;
 	while (b != NULL)
+	{
+		if (b->nbr > a->nbr)
+		{
+			a->keep_A = 1;
+			a = b;
+		}
+		else
+			a->keep_A = 0;
+		b = b->next;
+	}
+	b = *list;
+	len->count = 0;
+	while (len->count++ < len->i_index)
 	{
 		if (b->nbr > a->nbr)
 		{
@@ -127,7 +138,33 @@ void	keep_A_greater(t_list **list, int i)
 	a->keep_A = 1;
 
 
-//	printf("keep_A_greater = ");
+//	t_list	*a;
+//	t_list	*b;
+//
+//	a = *list;
+//	while (i > 0)
+//	{
+//		a->keep_A = 0;
+//		a = a->next;
+//		i--;
+//	}
+//	b = a->next;
+//	while (b != NULL)
+//	{
+//		if (b->nbr > a->nbr)
+//		{
+//			a->keep_A = 1;
+//			a = b;
+//		}
+//		else
+//			a->keep_A = 0;
+//		b = b->next;
+//	}
+//	a->keep_A = 1;
+
+
+
+//	printf("\nkeep_A_greater = ");
 //	a = *list;
 //	while (a != NULL)
 //	{
