@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	rra(t_list **list)
+void	rra(t_list **list, int i)
 {
 	t_list	*temp;
 //	t_list	*tmp;
@@ -19,7 +19,8 @@ void	rra(t_list **list)
  * при выполнении rrr напечатать только rrr, а не rra и rrb */
 
 //	write(1, "rra\n", 4);
-	printf("rra\n");
+	if (i == 1)
+		printf("rra\n");
 //	tmp = *list;
 //	while(tmp != NULL)
 //	{
@@ -28,7 +29,7 @@ void	rra(t_list **list)
 //	}
 }
 
-void	rrb(t_list **swap)
+void	rrb(t_list **swap, int t)
 {
 	t_list	*b;
 	int		count;
@@ -53,7 +54,8 @@ void	rrb(t_list **swap)
 	b->next = NULL;
 
 	//write(1, "rrb\n", 4);
-	printf("rrb\n");
+	if (t == 1)
+		printf("rrb\n");
 //	b = *swap;
 //	while(b != NULL)
 //	{
@@ -62,8 +64,10 @@ void	rrb(t_list **swap)
 //	}
 }
 
+
 void	rrr(t_list **list, t_list **swap)
 {
-	rra(list);
-	rrb(swap);
+	rra(list, 0);
+	rrb(swap, 0);
+	printf("rrr\n");
 }
