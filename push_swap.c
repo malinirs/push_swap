@@ -36,7 +36,7 @@ static void	write_element(t_list **list, char *str)
 	t_list	*tmp;
 
 	number = ft_atoi_mod(str);
-	if (number >= 2147483647 || number <= -2147483648)
+	if (number > 2147483647 || number < -2147483648)
 		clear_list(list);
 	tmp = ft_lstnew(number);
 	if (!tmp)

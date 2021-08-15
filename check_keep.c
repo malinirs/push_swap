@@ -256,35 +256,35 @@ t_list	*summ_step(t_list **list, t_list **swap, t_size *len)
 //	}
 
 
-//	while (min_i > 0)
+while (min_i > 0)
+	{
+		min_i--;
+		min_B = min_B->next;
+	}
+
+//	if (min_i >= 0 && min_i <= len->size_b / 2 + len->size_b % 2)
 //	{
-//		min_i--;
-//		min_B = min_B->next;
+//
+//		while (min_i > 0)
+//		{
+//			min_i--;
+//			min_B = min_B->next;
+////			rb(swap, 1);
+//		}
+////		(*swap)->step_B = 0;
 //	}
-
-	if (min_i >= 0 && min_i <= len->size_b / 2 + len->size_b % 2)
-	{
-
-		while (min_i > 0)
-		{
-			min_i--;
-		//	min_B = min_B->next;
-			rb(swap, 1);
-		}
-		(*swap)->step_B = 0;
-	}
-	else if (min_i > len->size_b / 2 + len->size_b % 2)
-	{
-		min_i = len->size_b - min_i;
-		while (min_i > 0)
-		{
-			min_i--;
-			rrb(swap, 1);
-		//	min_B = min_B->next;
-		}
-		(*swap)->step_B = 0;
-	}
-
+//	else if (min_i > len->size_b / 2 + len->size_b % 2)
+//	{
+//		min_i = len->size_b - min_i;
+//		while (min_i > 0)
+//		{
+//			min_i--;
+////			rrb(swap, 1);
+//			min_B = min_B->next;
+//		}
+////		(*swap)->step_B = 0;
+//	}
+	return (min_B);
 	return (*swap);
 }
 
@@ -293,39 +293,72 @@ void	realize_move(t_list **list, t_list **swap, t_list *min, t_size *len)
 //	if (((min)->ra == 1 && (min)->rb == 1) || ((min)->rra == 1 &&
 //	(min)->rrb == 1))
 //	{
-//		if ((min)->ra == 1 && (min)->rb == 1)
-//		{
-//			while (min->step_B-- > 0 && min->step_A-- > 0)
-//				rr(list, swap);
-//		}
-//		else if ((min)->rra == 1 && (min)->rrb == 1)
-//		{
-//			while (min->step_B-- > 0 && min->step_A-- > 0)
-//				rrr(list, swap);
-//		}
+		if ((min)->ra == 1 && (min)->rb == 1)
+		{
+			while (min->step_B > 0 && min->step_A > 0)
+			{
+				rr(list, swap);
+				min->step_B--;
+				min->step_A--;
+			}
+		}
+		if ((min)->rra == 1 && (min)->rrb == 1)
+		{
+			while (min->step_B > 0 && min->step_A > 0)
+			{
+				rrr(list, swap);
+				min->step_B--;
+				min->step_A--;
+			}
+		}
 //	}
 
-	if ((*swap)->ra == 1)
-	{
-		while (min->step_A-- > 0)
-			ra(list, 1);
-	}
-	else if ((*swap)->rra == 1)
-	{
-		while (min->step_A-- > 0)
-			rra(list, 1);
-	}
 
-	if ((*swap)->rb == 1)
-	{
-		while (min->step_B-- > 0)
-			rb(swap, 1);
-	}
-	else if ((*list)->rrb == 1)
-	{
-		while (min->step_B-- > 0)
-			rrb(swap, 1);
-	}
+	if ((min)->ra == 1)
+{
+	while (min->step_A-- > 0)
+		ra(list, 1);
+}
+	else if ((min)->rra == 1)
+{
+	while (min->step_A-- > 0)
+		rra(list, 1);
+}
+
+	if ((min)->rb == 1)
+{
+	while (min->step_B-- > 0)
+		rb(swap, 1);
+}
+	else if ((min)->rrb == 1)
+{
+	while (min->step_B-- > 0)
+		rrb(swap, 1);
+}
+
+
+//
+//	if ((*swap)->ra == 1)
+//	{
+//		while (min->step_A-- > 0)
+//			ra(list, 1);
+//	}
+//	else if ((*swap)->rra == 1)
+//	{
+//		while (min->step_A-- > 0)
+//			rra(list, 1);
+//	}
+//
+//	if ((*swap)->rb == 1)
+//	{
+//		while (min->step_B-- > 0)
+//			rb(swap, 1);
+//	}
+//	else if ((*swap)->rrb == 1)
+//	{
+//		while (min->step_B-- > 0)
+//			rrb(swap, 1);
+//	}
 //	pa(list, swap, len);
 }
 
