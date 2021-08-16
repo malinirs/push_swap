@@ -31,6 +31,13 @@ int	ft_isdigit_mod(int c)
 	return (0);
 }
 
+int	ft_isdigit(int c)
+{
+	if (c > 47 && c < 58)
+		return (1);
+	return (0);
+}
+
 int	ft_atoi_mod(char *str)
 {
 	int			znak;

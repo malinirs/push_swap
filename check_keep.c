@@ -418,6 +418,11 @@ void	 check_keep_A(t_list **list, t_list **swap, t_size *len)
 		check_step_B(swap, len);
 		check_step_A(list, swap, len);
 		min = summ_step(list, swap, len);
+
+
+
+
+
 		realize_move(list, swap, min, len);
 		pa(list, swap, len);
 

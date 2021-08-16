@@ -193,11 +193,66 @@ static int	greater_than(t_list **list, t_size *len, int *arr)
 //	return (i);
 }
 
-void	markup_mode(t_list **list, t_size *len)
+
+void	check_stack_A_5(t_list **list)
+{
+	if ((*list)->nbr > (*list)->next->nbr && \
+	(*list)->next->nbr > (*list)->next->next->nbr && \
+	(*list)->next->next->nbr > (*list)->next->next->next->nbr && \
+	(*list)->next->next->next->nbr > (*list)->next->next->next->next->nbr)
+	{
+		ra(list, 1);
+		sa(list);
+		rra(list, 1);
+		sa(list);
+		ra(list, 1);
+		sa(list);
+		ra(list, 1);
+		ra(list, 1);
+		sa(list);
+		exit(0);
+	}
+}
+
+void	check_stack_A_3(t_list **list)
+{
+	int a;
+	int b;
+	int c;
+
+	a = (*list)->nbr;
+	b = (*list)->next->nbr;
+	c = (*list)->next->next->nbr;
+	if (a < b && a < c && b > c && c > a)
+	{
+		sa(list);
+		ra(list, 1);
+	}
+	else if (a > b && b > c && a > c)
+	{
+		ra(list, 1);
+		sa(list);
+	}
+	else if (a > b && b < c && a > c)
+		ra(list, 1);
+	else if (a > b && b < c && a < c)
+		sa(list);
+	else if (c < b && b > a)
+		rra(list, 1);
+	exit(0);
+}
+
+void	markup_mode(t_list **list, t_list **swap, t_size *len)
 {
 	int		*arr;
 	int		*mass;
 	t_list	*temp;
+
+	if (len->size_a == 5)
+		check_stack_A_5(list);
+	if (len->size_a == 3)
+		check_stack_A_3(list);
+
 
 	arr = malloc(sizeof(int) * len->size_a);
 	if (!arr)
@@ -216,11 +271,6 @@ void	markup_mode(t_list **list, t_size *len)
 
 	int i = 0;
 	temp = *list;
-
-//	printf("arr = %d,  mass = %d", arr[len->greater_a], mass[len->index_a]);
-
-
-
 	if (arr[len->i_greater] > mass[len->i_index])
 		keep_A_greater(list, len);
 	else

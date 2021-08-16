@@ -64,7 +64,7 @@ void	rr(t_list **list, t_list **swap);
 void	rra(t_list **list, int i);
 void	rrb(t_list **swap, int t);
 void	rrr(t_list **list, t_list **swap);
-void	markup_mode(t_list **list, t_size *len);
+void	markup_mode(t_list **list, t_list **swap, t_size *len);
 void	comparison_Keep_A(t_list *list, t_size *len);
 int	by_index(t_list **list, t_size *len, int *mass);
 int		*selection(int *arr, t_size *len);
@@ -78,6 +78,10 @@ void	check_rr(t_list **list, t_list **swap);
 t_list	*summ_step(t_list **list, t_list **swap, t_size *len);
 //void	check_step(t_list **list, t_size *len);
 int	search_min_step(t_list **swap);
+//void	check_stack_A_5(t_list **list);
+//void	check_stack_A_3(t_list **list);
+int	ft_isdigit(int c);
+
 
 
 

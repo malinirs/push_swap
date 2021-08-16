@@ -1,40 +1,37 @@
 #include "push_swap.h"
 
-static void	check_str(int argc, char **argv)
+static int  check_str(char *str)
 {
-	int		i;
-	int		j;
+	int    i;
+	int    di;
 
 	i = 0;
-	j = -1;
-	argc--;
-	while (argv[j][i] && ++j <= argc)
+	di = 0;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (ft_isdigit(str[i]) > 0)
 	{
-		i = 0;
-		while (argv[j][i])
-		{
-			if (!ft_isdigit_mod(argv[j][i]))
-				close_program();
-			if (ft_strlen(argv[j]) == 1 && (argv[j][i] == '-' || \
-			argv[j][i] == '+'))
-				close_program();
-			if (ft_strlen(argv[j]) > 1 && ((argv[j][i] == '+' || \
-			argv[j][i] == '-') && ((argv[j][i + 1] == '+' || \
-			argv[j][i + 1] == '-'))))
-				close_program();
-			if (ft_strlen(argv[j]) > 1 && ft_isdigit_mod(argv[j][i]) && \
-			(argv[j][i + 1] == '+' || argv[j][i + 1] == '-'))
-				close_program();
-			i++;
-		}
+		i++;
+		di++;
 	}
+	if (!str[i] && di)
+		di = 1;
+	else
+		di = 0;
+	return (di);
 }
 
 static void	write_element(t_list **list, char *str)
 {
 	int			number;
 	t_list	*tmp;
+	int    di;
 
+	di = check_str(str);
+	if (!di)
+		clear_list(list);
 	number = ft_atoi_mod(str);
 	if (number > 2147483647 || number < -2147483648)
 		clear_list(list);
@@ -50,12 +47,15 @@ static void	write_elem_space(t_list **list, char *str)
 	t_list	*tmp;
 	char	**ptr;
 	char	**q;
-	int		j = 0;
+	int		di;
 
 	ptr = ft_split(str, ' ');
 	q = ptr;
 	while (*q)
 	{
+		di = check_str(*q);
+		if (!di)
+			clear_list(list);
 		number = ft_atoi_mod(*q);
 		if (number >= 2147483647 || number <= -2147483648)
 			clear_list(list);
@@ -65,19 +65,13 @@ static void	write_elem_space(t_list **list, char *str)
 		ft_lstadd_back(list, tmp);
 		q++;
 	}
-	while (ptr[j])
-	{
-		//free(ptr[j]);
-		j++;
-	}
-	//free(ptr);
 }
 
 void 	write_list(char **argv, t_list **list)
 {
 	while (*argv)
 	{
-		if (!ft_strchr_mod(*argv, ' ')) /** нет ' ' */
+		if (!ft_strchr_mod(*argv, ' '))
 			write_element(list, *argv);
 		else
 			write_elem_space(list, *argv);
@@ -116,42 +110,20 @@ static void	check_duplicat(t_list **list)
 	}
 }
 
-//t_size	*assignment(t_list *list, t_list *swap)
-//{
-//	t_size	*size;
-//
-//	size->a = list;
-//	size->b = swap;
-//	size->size_a = ft_lstsize(size->a);
-//	size->size_b = ft_lstsize(size->b);
-//	return (size);
-//}
-
 int main(int argc, char **argv)
 {
 	t_list	*list;
-//	t_list	*swap;
 	char	**temp;
-//	t_size	*size;
-//	swap = 0x0;
 
 	argv++;
 	argc--;
 	if (argc > 0)
 	{
 		temp = argv;
-		check_str(argc, temp);
-
 		list = 0x0;
-//		swap = 0x0;
 		write_list(temp, &list);
 		check_duplicat(&list);
-//		size = malloc(sizeof(t_size));
-//		if (!size)
-//			clear_list(&list);
-//		size = assignment(list, swap);
 		rules_swap(&list);
-
 	}
 	if (argc <= 0)
 		close_program();

@@ -35,18 +35,16 @@ int	by_index(t_list **list, t_size *len, int *mass)
 {
 	t_list	*temp;
 	int		i;
-	//	int		*max;
-
 
 	temp = *list;
 	i = 0;
 
-	//	printf("\n mass[i] =");
+//		printf("\n mass[i] =");
 	while (temp != NULL)
 	{
 		mass[i] = comparison_A(temp, *list) + 1;
 
-		//		printf(" %d", mass[i]);
+//				printf(" %d", mass[i]);
 
 		temp = temp->next;
 		i++;
@@ -107,8 +105,11 @@ void	keep_A_greater(t_list **list, t_size *len)
 
 	b = *list;
 	len->count = 0;
-	while (len->count++ < len->i_greater)
+	while (len->count < len->i_greater)
+	{
+		len->count++;
 		b = b->next;
+	}
 	a = b;
 	b = b->next;
 	while (b != NULL)
@@ -124,7 +125,7 @@ void	keep_A_greater(t_list **list, t_size *len)
 	}
 	b = *list;
 	len->count = 0;
-	while (len->count++ < len->i_index)
+	while (len->count++ < len->i_greater)
 	{
 		if (b->nbr > a->nbr)
 		{
