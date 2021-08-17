@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: awoods <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/17 12:17:59 by awoods            #+#    #+#             */
+/*   Updated: 2021/08/17 12:18:02 by awoods           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
@@ -39,7 +51,7 @@ temp)
 	return (*str);
 }
 
-static size_t 	ft_check_nbr_str(char const	*s, char c)
+static size_t	ft_check_nbr_str(char const	*s, char c)
 {
 	size_t	i;
 	size_t	nb_str;
@@ -63,8 +75,8 @@ static size_t 	ft_check_nbr_str(char const	*s, char c)
 	return (nb_str);
 }
 
-static void	ft_nbr_index_and_copy(char const	*s, char	c, char	**str,
-							  size_t	nb_str)
+static int	ft_nbr_index_and_copy(char const *s, char c, char **str, \
+									size_t nb_str)
 {
 	size_t	i;
 	size_t	j;
@@ -82,12 +94,13 @@ static void	ft_nbr_index_and_copy(char const	*s, char	c, char	**str,
 		if (temp < i)
 		{
 			if (ft_malloc_and_free(str, i, j, temp) == NULL)
-				return ;
+				return (1);
 			ft_strlcpy(str[j], &s[temp], i - temp + 1);
 		}
 		j++;
 	}
 	str[j] = NULL;
+	return (0);
 }
 
 char	**ft_split(char const *s, char c)
@@ -98,7 +111,8 @@ char	**ft_split(char const *s, char c)
 	nb_str = ft_check_nbr_str(s, c);
 	str = (char **)malloc(sizeof(char *) * (nb_str + 1));
 	if (!str)
-		return (NULL); // ОБРАБОТАТЬ !!!
-	ft_nbr_index_and_copy(s, c, str, nb_str);
+		return (NULL);
+	if (ft_nbr_index_and_copy(s, c, str, nb_str) == 1)
+		return (NULL);
 	return (str);
 }

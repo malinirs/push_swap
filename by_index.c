@@ -1,34 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   by_index.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: awoods <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/16 20:36:28 by awoods            #+#    #+#             */
+/*   Updated: 2021/08/16 20:36:30 by awoods           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int	comparison_A(t_list *t, t_list *list)
+static int	comparison_A(t_list *t, t_list *list, t_size *len)
 {
-	int		count;
 	t_list	*temp;
-	int		i;
 
-	count = 0;
+	len->count = 0;
 	temp = t;
-	i = t->order + 1;
+	len->i = t->order + 1;
 	while (temp != NULL)
 	{
-		if (temp->order == i)
+		if (temp->order == len->i)
 		{
-			count++;
-			i++;
+			len->count++;
+			len->i++;
 		}
 		temp = temp->next;
 	}
 	temp = list;
 	while (temp != t)
 	{
-		if (temp->order == i)
+		if (temp->order == len->i)
 		{
-			count++;
-			i++;
+			len->count++;
+			len->i++;
 		}
 		temp = temp->next;
 	}
-	return (count);
+	return (len->count);
 }
 
 int	by_index(t_list **list, t_size *len, int *mass)
@@ -38,14 +48,9 @@ int	by_index(t_list **list, t_size *len, int *mass)
 
 	temp = *list;
 	i = 0;
-
-//		printf("\n mass[i] =");
 	while (temp != NULL)
 	{
-		mass[i] = comparison_A(temp, *list) + 1;
-
-//				printf(" %d", mass[i]);
-
+		mass[i] = comparison_A(temp, *list, len) + 1;
 		temp = temp->next;
 		i++;
 	}
@@ -56,46 +61,21 @@ int	by_index(t_list **list, t_size *len, int *mass)
 	return (i);
 }
 
-
-void	keep_A_index(t_list **list, t_list *head)
+static void	keep_A_greater_contin(t_size *len, t_list **a, t_list **b)
 {
-	t_list	*temp;
-	int		i;
-
-	temp = head;
-	i = temp->order + 1;
-	while (temp != NULL)
+	len->count = 0;
+	while (len->count++ < len->i_greater)
 	{
-		if (temp->order == i)
+		if ((*b)->nbr > (*a)->nbr)
 		{
-			temp->keep_A = 1;
-			i++;
+			(*a)->keep_A = 1;
+			(*a) = (*b);
 		}
 		else
-			temp->keep_A = 0;
-		temp = temp->next;
+			(*a)->keep_A = 0;
+		(*b) = (*b)->next;
 	}
-	temp = *list;
-	while (temp != head)
-	{
-		if (temp->order == i)
-		{
-			temp->keep_A = 1;
-			i++;
-		}
-		else
-			temp->keep_A = 0;
-		temp = temp->next;
-	}
-	temp->keep_A = 1;
-
-//	printf("\nkeep_A_index = ");
-//	temp = *list;
-//	while (temp != NULL)
-//	{
-//		printf("%d ", temp->keep_A);
-//		temp = temp->next;
-//	}
+	(*a)->keep_A = 1;
 }
 
 void	keep_A_greater(t_list **list, t_size *len)
@@ -124,52 +104,5 @@ void	keep_A_greater(t_list **list, t_size *len)
 		b = b->next;
 	}
 	b = *list;
-	len->count = 0;
-	while (len->count++ < len->i_greater)
-	{
-		if (b->nbr > a->nbr)
-		{
-			a->keep_A = 1;
-			a = b;
-		}
-		else
-			a->keep_A = 0;
-		b = b->next;
-	}
-	a->keep_A = 1;
-
-
-//	t_list	*a;
-//	t_list	*b;
-//
-//	a = *list;
-//	while (i > 0)
-//	{
-//		a->keep_A = 0;
-//		a = a->next;
-//		i--;
-//	}
-//	b = a->next;
-//	while (b != NULL)
-//	{
-//		if (b->nbr > a->nbr)
-//		{
-//			a->keep_A = 1;
-//			a = b;
-//		}
-//		else
-//			a->keep_A = 0;
-//		b = b->next;
-//	}
-//	a->keep_A = 1;
-
-
-
-//	printf("\nkeep_A_greater = ");
-//	a = *list;
-//	while (a != NULL)
-//	{
-//		printf("%d ", a->keep_A);
-//		a = a->next;
-//	}
+	keep_A_greater_contin(len, &a, &b);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: awoods <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/17 12:50:42 by awoods            #+#    #+#             */
+/*   Updated: 2021/08/17 12:50:44 by awoods           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ra(t_list **list, int i)
@@ -8,9 +20,8 @@ void	ra(t_list **list, int i)
 	*list = (*list)->next;
 	ft_lstadd_back(list, tmp);
 	tmp->next = NULL;
-//	write(1, "ra\n", 3);
 	if (i == 1)
-		printf("ra\n");
+		write(1, "ra\n", 3);
 }
 
 void	rb(t_list **swap, int i)
@@ -21,40 +32,13 @@ void	rb(t_list **swap, int i)
 	*swap = (*swap)->next;
 	ft_lstadd_back(swap, b);
 	b->next = 0x0;
-//	write(1, "rb\n", 3);
 	if (i == 1)
-		printf("rb\n");
+		write(1, "rb\n", 3);
 }
-
-
 
 void	rr(t_list **list, t_list **swap)
 {
 	ra(list, 0);
 	rb(swap, 0);
-	printf("rr\n");
-}
-
-int	search_min_step(t_list **swap)
-{
-	t_list	*b;
-	int 	min;
-	int 	min_i;
-	int		i;
-
-	i = 0;
-	b = *swap;
-	min = b->sum_step;
-	min_i = 0;
-	while (b)
-	{
-		if (min > b->sum_step)
-		{
-			min = b->sum_step;
-			min_i=i;
-		}
-		i++;
-		b = b->next;
-	}
-	return (min_i);
+	write(1, "rr\n", 3);
 }

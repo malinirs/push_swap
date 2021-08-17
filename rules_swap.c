@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rules_swap.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: awoods <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/17 12:54:12 by awoods            #+#    #+#             */
+/*   Updated: 2021/08/17 12:54:16 by awoods           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	sorted_array(int *arr, t_size *len)
@@ -19,13 +31,6 @@ static void	sorted_array(int *arr, t_size *len)
 		arr[i + 1] = temp;
 		j++;
 	}
-
-
-
-//	i = 0;
-//	printf("\narr[i] = ");
-//	while (len->size_a > i++)
-//		printf(" %d", arr[i]);
 }
 
 static int	*create_int_array(t_list **list)
@@ -41,15 +46,10 @@ static int	*create_int_array(t_list **list)
 	sort = malloc(sizeof(int) * n);
 	if (!sort)
 		clear_list(list);
-
-//	printf("\nsort[i] = ");
-
 	while (n > i++)
 	{
 		sort[i] = t->nbr;
 		t = t->next;
-
-//		printf(" %d", sort[i]);
 	}
 	return (sort);
 }
@@ -68,20 +68,12 @@ static void	write_order(t_list **list, int *sort, t_size *len)
 			if (temp->nbr == sort[i])
 			{
 				temp->order = i;
-				break;
+				break ;
 			}
 			i++;
 		}
 		temp = temp->next;
 	}
-
-//	temp = *list;
-//	printf("\n*list->order = ");
-//	while (temp)
-//	{
-//		printf(" %d", temp->order);
-//		temp = temp->next;
-//	}
 }
 
 static t_size	init(t_list *list, t_list *swap)
@@ -103,11 +95,12 @@ void	rules_swap(t_list **list)
 
 	swap = NULL;
 	len = init(*list, swap);
+	check_sort(list, &len);
 	sort = create_int_array(list);
 	sorted_array(sort, &len);
 	write_order(list, sort, &len);
-//	free(sort);
-	markup_mode(list, &swap, &len);
+	free(sort);
+	markup_mode(list, &len);
 	check_keep_A(list, &swap, &len);
 	free_list(list);
 }

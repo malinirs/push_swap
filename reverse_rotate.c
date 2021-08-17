@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: awoods <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/17 12:49:47 by awoods            #+#    #+#             */
+/*   Updated: 2021/08/17 12:49:50 by awoods           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	rra(t_list **list, int i)
 {
 	t_list	*temp;
-//	t_list	*tmp;
 	int		count;
 
 	temp = *list;
@@ -15,18 +26,8 @@ void	rra(t_list **list, int i)
 	while (temp != NULL && 0 < count--)
 		temp = temp->next;
 	temp->next = NULL;
-/**  писать выполнение команды во время вызова, а не в самой функции, чтобы
- * при выполнении rrr напечатать только rrr, а не rra и rrb */
-
-//	write(1, "rra\n", 4);
 	if (i == 1)
-		printf("rra\n");
-//	tmp = *list;
-//	while(tmp != NULL)
-//	{
-//		printf("%d ", tmp->nbr);
-//		tmp = tmp->next;
-//	}
+		write(1, "rra\n", 4);
 }
 
 void	rrb(t_list **swap, int t)
@@ -34,13 +35,6 @@ void	rrb(t_list **swap, int t)
 	t_list	*b;
 	int		count;
 	int		i;
-
-//	b = *swap;
-//	while(b != NULL)
-//	{
-//		printf("%d ", b->nbr);
-//		b = b->next;
-//	}
 
 	b = *swap;
 	i = -1;
@@ -52,22 +46,13 @@ void	rrb(t_list **swap, int t)
 	while (b != NULL && count-- > 0)
 		b = b->next;
 	b->next = NULL;
-
-	//write(1, "rrb\n", 4);
 	if (t == 1)
-		printf("rrb\n");
-//	b = *swap;
-//	while(b != NULL)
-//	{
-//		printf("%d ", b->nbr);
-//		b = b->next;
-//	}
+		write(1, "rrb\n", 4);
 }
-
 
 void	rrr(t_list **list, t_list **swap)
 {
 	rra(list, 0);
 	rrb(swap, 0);
-	printf("rrr\n");
+	write(1, "rrr\n", 4);
 }

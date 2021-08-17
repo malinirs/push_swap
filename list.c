@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: awoods <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/08/17 12:35:39 by awoods            #+#    #+#             */
+/*   Updated: 2021/08/17 12:35:41 by awoods           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
@@ -37,13 +49,7 @@ void	free_list(t_list **list)
 	}
 }
 
-void	clear_list(t_list **list)
-{
-	free_list(list);
-	close_program();
-}
-
-int	ft_lstsize(t_list	*lst)
+int	ft_lstsize(t_list *lst)
 {
 	int		i;
 	t_list	*new_lst;
