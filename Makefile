@@ -25,9 +25,9 @@ SRCS_B =	checker.c \
 			utils.c \
 			list.c \
 			rotate_mod.c \
-			rotate.c \
-     		reverse_rotate.c \
-    	    push_and_swap_mod.c
+     		reverse_rotate_mod.c \
+    	    push_and_swap_mod.c \
+    	    checker_contin.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_B = $(SRCS_B:.c=.o)

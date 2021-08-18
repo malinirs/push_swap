@@ -89,12 +89,19 @@ t_list	*ft_lstnew(int nbr);
 int		ft_lstsize(t_list	*lst);
 void	check_sort(t_list **list, t_size *len);
 
-void	sa_mod(t_list **list, int i);
-void	sb_mod(t_list **swap, int i);
-void	ss_mod(t_list **list, t_list **swap);
-void	pa_mod(t_list **list, t_list **swap, int i);
-void	pb_mod(t_list **list, t_list **swap, int i);
-void	rr_mod(t_list **list, t_list **swap);
-void	rrr_mod(t_list **list, t_list **swap);
+void	sa_mod(t_list **list, t_size *len);
+void	sb_mod(t_list **swap, t_size *len);
+void	ss_mod(t_list **list, t_list **swap, t_size *len);
+void	pa_mod(t_list **list, t_list **swap, t_size *len);
+void	pb_mod(t_list **list, t_list **swap, t_size *len);
+void	rr_mod(t_list **list, t_list **swap, t_size *len);
+void	rrr_mod(t_list **list, t_list **swap, t_size *len);
+void	rra_mod(t_list **list, t_size *len);
+void	rrb_mod(t_list **swap, t_size *len);
+void	ra_mod(t_list **list, t_size *len);
+void	rb_mod(t_list **swap, t_size *len);
+int		sort(t_list *A, t_list *B);
+void	check(t_list **A, t_list **B, char *line, t_size *len);
+int		check_str2(char *str);
 
 #endif
